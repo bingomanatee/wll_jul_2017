@@ -10,19 +10,14 @@ import App from './containers/App/App'
 import Home from './screens/Home'
 import Counter from './screens/Counter'
 import Callback from './screens/Callback/Callback'
-import Auth from './Auth/Auth';
-
-const auth = new Auth();
 
 // Simple Routing
 Render(states, (
   <Router>
-    <Route path='/' component={(props)=><App auth={auth} {...props}></App>}>
+    <Route path='/' component={App}>
       <IndexRoute auth={auth} component={Home} />
       <Route path="counter" component={Counter} />
-     <Route path="callback" component={(props) => {
-       return <Callback auth={auth} {...props} />;
-     }} />
+     <Route path="callback" component={Callback} />
     </Route>
   </Router>
 ))
