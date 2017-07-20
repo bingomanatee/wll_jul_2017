@@ -1,9 +1,8 @@
 import Auth from './Auth';
+import React from 'react'
+import { Render, State, Actions, Effect } from 'jumpsuit'
 
 const auth = new Auth();
-
-import React from 'react'
-import { Render, State, Actions, Component } from 'jumpsuit'
 
 // Create a state with some actions
 export default State({
@@ -13,5 +12,21 @@ export default State({
   setUser(state, user) {
     return {identity: user, loggedIn: !!user}
   },
-  reset() { return { identity: false, loggedIn: false} }
+  resetUser() { return { identity: false, loggedIn: false} }
+});
+
+Effect('login', () => {
+  auth.login();
+});
+
+Effect('logout', () => {
+  auth.logout();
+});
+
+Effect('parseAuth', () => {
+  auth.handleAuthentication();
+});
+
+Effect('initAuth', () => {
+  auth.loadUser();
 });

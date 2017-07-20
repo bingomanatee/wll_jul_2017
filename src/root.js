@@ -15,9 +15,9 @@ import Callback from './screens/Callback/Callback'
 Render(states, (
   <Router>
     <Route path='/' component={App}>
-      <IndexRoute auth={auth} component={Home} />
+      <IndexRoute component={Home} />
       <Route path="counter" component={Counter} />
      <Route path="callback" component={Callback} />
     </Route>
   </Router>
-))
+));

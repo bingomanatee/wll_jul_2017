@@ -1,6 +1,6 @@
 import counter from './counter'
-import authstate from './Auth/authState';
+import authState from './Auth/authState';
 export default {
   counter,
-  authstate
+    authState
 }

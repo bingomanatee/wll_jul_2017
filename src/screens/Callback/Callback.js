@@ -1,20 +1,21 @@
 import React from 'react'
-import {Link} from 'jumpsuit'
+import {Link, Actions, Goto} from 'jumpsuit'
 //
 export default class Home extends React.Component {
 
-  onComponentDidMount () {
-    this.props.auth.handleAuthentication(this.props);
-  }
+    componentDidMount() {
+        Actions.parseAuth();
+        Goto({path: '/'})
+    }
 
-  render () {
-    return (
-      <div className='Callback'>
-        <p>
-          Where you end up after you log on
-        </p>
-        <Link to='/'>Go To Home</Link>
-      </div>
-    )
-  }
+    render() {
+        return (
+            <div className='Callback'>
+                <p>
+                    Where you end up after you log on
+                </p>
+                <Link to='/'>Go To Home</Link>
+            </div>
+        )
+    }
 }
