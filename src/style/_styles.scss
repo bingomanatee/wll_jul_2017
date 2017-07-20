@@ -1,0 +1,39 @@
+$secondaryColor: hsl(115, 35%, 73%);
+$darkColor: hsl(187, 100%, 27%);
+$navColorOnDark: hsl(0, 0%, 100%);
+$lightColor: hsl(56, 95%, 91%);
+
+$headerFont: lota_grotesque_alt_2exlight, "Helvetica Neue", sans-serif;
+$headerPaddingHoriz: 1rem;
+$headerPaddingVerti: 1rem;
+
+@mixin largeFontSize () {
+  font-size: 2rem;
+  text-transform: uppercase;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  * {
+    font-family: 'lota_grotesque_alt_2regular', "Helvetica Neue", sans-serif;
+  }
+
+}
+
+html {
+  font-size: 16px;
+
+  @media screen and (min-width: 900px) {
+    font-size: 18px;
+  }
+
+  @media screen and (min-width: 1200px) {
+    font-size: 20px;
+  }
+}

@@ -1,0 +1,16 @@
+@import '../../style/styles';
+
+.Header {
+  padding: $headerPaddingVerti $headerPaddingHoriz;
+  background-color: $darkColor;
+  h1, h2, h3, h4 {
+    font-family: $headerFont;
+    color: $lightColor;
+    font-weight: 300;
+  }
+}
+
+.HeaderTitle {
+  color: #fefbd2;
+  @include largeFontSize();
+}
