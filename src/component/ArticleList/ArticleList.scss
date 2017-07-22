@@ -1,0 +1,36 @@
+@import '../../style/_styles.scss';
+
+,ArticleList {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+.ArticleList__row {
+  min-height: 3rem;
+  width: 100%;
+  display: flex;
+  flex-direction:row;
+  min-height: 3rem;
+  align-items: stretch;
+}
+
+.articleList__rowCell-content{
+  flex-grow: 1;
+}
+
+.ArticleList__rowCell {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-grow: 0;
+  flex-shrink: 0;
+  padding:0.5rem 1rem;
+}
+
+.ArticleList__rowCell-path {
+ min-width: 4rem;
+  justify-content: flex-end;
+  @include headerStyle(0.8);
+  padding-right: 0.25rem;
+}

@@ -1,0 +1,6 @@
+.SortIcon {
+  display: flex;
+  flex-direction: column;
+  witdh: 30px;
+  height: 30px;
+  align-items: center; }

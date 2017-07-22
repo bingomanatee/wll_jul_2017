@@ -1,5 +1,6 @@
 import React from 'react'
 import {Component, Actions} from 'jumpsuit';
+import ArticleList from '../../component/ArticleList/ArticleLiist';
 
 export default Component(
   {
@@ -10,10 +11,8 @@ export default Component(
       console.log('rendering home with props:', this.props);
       const articles = this.props.articles || [];
       return <div>
-        <h2>Articles</h2>
-        {
-          articles.map((article, i) => <div key={`article${i}`}>{article.title}</div>)
-        }
+        <h2 className="PageHead">Articles</h2>
+        <ArticleList articles={articles} />
       </div>
     }
   },

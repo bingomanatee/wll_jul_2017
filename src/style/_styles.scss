@@ -4,18 +4,31 @@ $navColorOnDark: hsl(0, 0%, 100%);
 $navColorOnLight: hsl(240, 100%, 50%);
 $lightColor: hsl(56, 95%, 91%);
 
-$headerFont: lota_grotesque_alt_2exlight, "Helvetica Neue", sans-serif;
+$headerFont: lota_grotesque_alt_2exlight, 'Helvetica Neue', Helvetica, sans-serif;
+$pageHeaderFont: lota_grotesque_alt_1black, 'Helvetica Neue', Helvetica, sans-serif;
+
 $headerPaddingHoriz: 1rem;
 $headerPaddingVerti: 0.25rem;
 
-@mixin largeFontSize() {
-  font-size: 2rem;
+@mixin largeFontSize($scale: 1) {
+  font-size: 2rem * $scale;
   text-transform: uppercase;
+}
+
+@mixin headerStyle($scale: 1) {
+  font-family: $headerFont;
+  text-transform: uppercase;
+  @include largeFontSize($scale);
 }
 
 h1, h2, h3, h4, h5, h6 {
   margin: 0;
   padding: 0;
+}
+
+.PageHead {
+  @include largeFontSize();
+  font-family: $contentHeaderFont;
 }
 
 body {
