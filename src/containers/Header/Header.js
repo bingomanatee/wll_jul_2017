@@ -1,6 +1,6 @@
 import React from 'react'
 import {Component} from 'jumpsuit';
-import Header from './../../Components/Header/Header';
+import Header from '../../component/Header/Header';
 
 export default Component(
   {

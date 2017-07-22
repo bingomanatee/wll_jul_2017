@@ -1,7 +1,12 @@
 import React from 'react'
-import { Link } from 'jumpsuit'
+import { Link, Actions } from 'jumpsuit'
 //
 export default class Home extends React.Component {
+
+  componentDidMount() {
+    Actions.getHomepageArticles();
+  }
+
   render() {
     const body = [];
     for (let i = 0; i < 100; ++i) {

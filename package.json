@@ -5,6 +5,7 @@
   "dependencies": {
     "auth0-js": "^8.7.0",
     "jumpsuit": "^2.1.2",
+    "node-fetch": "^1.7.1",
     "node-sass-chokidar": "0.0.3",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",

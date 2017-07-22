@@ -7,9 +7,9 @@ import states from './state'
 // Containers
 import App from './containers/App/App'
 // Screens
-import Home from './screens/Home'
-import Counter from './screens/Counter'
-import Callback from './screens/Callback/Callback'
+import Home from './containers/Home/Home';
+import Counter from './screens/Counter';
+import Callback from './screens/Callback/Callback';
 
 // Simple Routing
 Render(states, (
