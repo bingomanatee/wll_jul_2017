@@ -5,7 +5,7 @@ import Header from './../../Components/Header/Header';
 export default Component(
   {
     render () {
-      return <Header auth={this.props.auth}/>;
+      return <Header className="dark" auth={this.props.auth}/>;
     }
   }
 )

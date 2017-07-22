@@ -2,11 +2,14 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  color: red !important; }
-  .App .App__content {
+  color: red !important;
+  .App__content {
     flex: 1 1 auto;
     overflow-y: auto;
-    min-height: 0px; }
+    min-height: 0px;
+  }
+}
 
 #jumpsuit-root, #root {
-  height: 100%; }
+  height: 100%;
+}

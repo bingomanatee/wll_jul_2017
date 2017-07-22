@@ -1,7 +1,7 @@
 import React from 'react'
 import { Render, Router, Route, IndexRoute } from 'jumpsuit'
 // Styles
-import './style/index.css'
+import './style/index.scss';
 // State
 import states from './state'
 // Containers

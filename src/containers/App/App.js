@@ -13,7 +13,9 @@ export default Component({
         return (
             <div className='App'>
                 <Header />
+                <div className="App__content">
                 {this.props.children}
+                </div>
             </div>
         )
     }

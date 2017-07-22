@@ -1,0 +1,23 @@
+@import '../../style/styles';
+
+.User{
+  .User__row {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    img {
+      margin: $headerPaddingVerti $headerPaddingHoriz;
+      display: block;
+      flex-grow: 0;
+      flex-shrink: 0;
+    }
+  }
+}
+
+.User {
+  min-width: 10rem;
+  .User__label {
+    margin: $headerPaddingVerti $headerPaddingHoriz;
+    flex-grow: 1;
+  }
+}

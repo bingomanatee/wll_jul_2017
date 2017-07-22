@@ -1,16 +1,38 @@
 @import '../../style/styles';
 
 .Header {
-  padding: $headerPaddingVerti $headerPaddingHoriz;
-  background-color: $darkColor;
-  h1, h2, h3, h4 {
-    font-family: $headerFont;
-    color: $lightColor;
-    font-weight: 300;
+  flex-grow: 0;
+  flex-shrink: 0;
+  .Header__title {
+    margin: $headerPaddingVerti $headerPaddingHoriz;
+    display: flex;
+    align-items:center;
+    flex-direction: row;
+    flex-grow: 1;
+    flex-shrink: 1;
+    h1 {
+      font-family: $headerFont;
+      color: $lightColor;
+      font-weight: 300;
+      overflow: hidden;
+      white-space:nowrap;
+      @include largeFontSize();
+      display: block;
+      margin: 0;
+      padding: 0;
+      line-height: 100%;
+      text-shadow: 0 2px 3px rgba(0,0,0,0.80);
+    }
   }
-}
-
-.HeaderTitle {
-  color: #fefbd2;
-  @include largeFontSize();
+  .Header__user {
+    display: flex;
+    align-content:center;
+    flex-direction: row;
+    flex-shrink: 0;
+    flex-grow: 0;
+  }
+  display: flex;
+  align-content:center;
+  flex-direction: row;
+  width: 100%;
 }

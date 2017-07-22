@@ -1,15 +1,19 @@
+@charset "UTF-8";
 h1, h2, h3, h4, h5, h6 {
   margin: 0;
   padding: 0; }
 
 body {
+  height: 100%;
   margin: 0;
   padding: 0; }
   body * {
     font-family: 'lota_grotesque_alt_2regular', "Helvetica Neue", sans-serif; }
 
 html {
-  font-size: 16px; }
+  height: 100%;
+  font-size: 16px;
+  background-color: #fefbd2; }
   @media screen and (min-width: 900px) {
     html {
       font-size: 18px; } }
@@ -17,15 +21,68 @@ html {
     html {
       font-size: 20px; } }
 
-.Header {
-  padding: 1rem 1rem;
-  background-color: #007a8a; }
-  .Header h1, .Header h2, .Header h3, .Header h4 {
-    font-family: lota_grotesque_alt_2exlight, "Helvetica Neue", sans-serif;
-    color: #fefbd2;
-    font-weight: 300; }
+.link {
+  cursor: pointer;
+  text-transform: uppercase;
+  color: blue;
+  padding: 1rem;
+  display: block; }
+  .link:hover::before {
+    content: '«';
+    color: blue; }
+  .link:hover:after {
+    content: '»';
+    color: blue; }
+  .link::before {
+    content: '«';
+    color: transparent; }
+  .link:after {
+    content: '»';
+    color: transparent; }
 
-.HeaderTitle {
-  color: #fefbd2;
-  font-size: 2rem;
-  text-transform: uppercase; }
+.dark {
+  background-color: #007a8a;
+  color: #fefbd2; }
+  .dark .link {
+    color: white;
+    text-transform: uppercase; }
+    .dark .link:hover::before {
+      content: '«';
+      color: white; }
+    .dark .link:hover:after {
+      content: '»';
+      color: white; }
+
+.Header {
+  flex-grow: 0;
+  flex-shrink: 0;
+  display: flex;
+  align-content: center;
+  flex-direction: row;
+  width: 100%; }
+  .Header .Header__title {
+    margin: 0.25rem 1rem;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex-grow: 1;
+    flex-shrink: 1; }
+    .Header .Header__title h1 {
+      font-family: lota_grotesque_alt_2exlight, "Helvetica Neue", sans-serif;
+      color: #fefbd2;
+      font-weight: 300;
+      overflow: hidden;
+      white-space: nowrap;
+      font-size: 2rem;
+      text-transform: uppercase;
+      display: block;
+      margin: 0;
+      padding: 0;
+      line-height: 100%;
+      text-shadow: 0 2px 3px rgba(0, 0, 0, 0.8); }
+  .Header .Header__user {
+    display: flex;
+    align-content: center;
+    flex-direction: row;
+    flex-shrink: 0;
+    flex-grow: 0; }
