@@ -1,12 +1,36 @@
 @charset "UTF-8";
+@media screen and (min-width: 900px) {
+  .ifSmall {
+    display: none; } }
+
+@media screen and (max-width: 900px) {
+  .ifNotSmall {
+    display: none; } }
+
+@media screen and (min-width: 1200px) {
+  .ifMedium {
+    display: none; } }
+
+@media screen and (max-width: 1200px) {
+  .ifNotMedium {
+    display: none; } }
+
 h1, h2, h3, h4, h5, h6 {
   margin: 0;
   padding: 0; }
 
 .pageHeader {
+  padding-top: 1rem;
   font-family: lota_grotesque_alt_1black, "Helvetica Neue", Helvetica, sans-serif;
-  font-size: 2rem;
+  font-size: 2.1rem;
   text-transform: none; }
+  @media screen and (max-width: 900px) {
+    .pageHeader {
+      font-size: 1.6rem; } }
+
+.pathSuffix {
+  color: rgba(254, 251, 210, 0.5);
+  text-transform: none !important; }
 
 .dark {
   background-color: #005766;
@@ -20,6 +44,46 @@ h1, h2, h3, h4, h5, h6 {
     .dark .link:hover:after {
       content: '»';
       color: white; }
+
+.HeaderDirNav {
+  display: flex;
+  width: 100%;
+  flex-direction: row-reverse; }
+  .HeaderDirNav .HeaderDirNav__item {
+    font-size: 1.3986rem;
+    font-family: lota_grotesque_alt_1exLt, "Helvetica Neue", Helvetica, sans-serif;
+    font-weight: 100;
+    text-transform: uppercase;
+    padding: 0.25rem 1rem; }
+    @media screen and (max-width: 900px) {
+      .HeaderDirNav .HeaderDirNav__item {
+        font-size: 1.0656rem; } }
+    .HeaderDirNav .HeaderDirNav__item:hover {
+      background-color: #00414d;
+      color: #fbf056; }
+  @media screen and (max-width: 1200px) {
+    .HeaderDirNav {
+      display: none; } }
+  @media screen and (max-width: 900px) {
+    .HeaderDirNav {
+      background-color: black !important;
+      border: 1px solid white; } }
+
+.HeaderDirNav__close {
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  font-size: 1.3986rem;
+  font-family: lota_grotesque_alt_1exLt, "Helvetica Neue", Helvetica, sans-serif;
+  font-weight: 100;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: center; }
+  @media screen and (max-width: 900px) {
+    .HeaderDirNav__close {
+      font-size: 1.0656rem; } }
+  .HeaderDirNav__close:hover {
+    background-color: #00414d;
+    color: #fbf056; }
 
 .Header {
   flex-grow: 0;
@@ -35,11 +99,11 @@ h1, h2, h3, h4, h5, h6 {
     flex-direction: row;
     flex-grow: 1;
     flex-shrink: 1; }
-    .Header .Header__title h1 {
+    .Header .Header__title h1.Header__titleInner {
       color: #fefbd2;
       overflow: hidden;
       white-space: nowrap;
-      font-size: 2rem;
+      font-size: 2.1rem;
       font-family: lota_grotesque_alt_1exLt, "Helvetica Neue", Helvetica, sans-serif;
       font-weight: 100;
       text-transform: uppercase;
@@ -47,7 +111,22 @@ h1, h2, h3, h4, h5, h6 {
       margin: 0;
       padding: 0;
       line-height: 100%;
-      text-shadow: 0 2px 3px rgba(0, 0, 0, 0.8); }
+      text-shadow: 0 2px 3px rgba(0, 0, 0, 0.8);
+      display: flex;
+      flex-direction: row;
+      align-content: center; }
+      @media screen and (max-width: 900px) {
+        .Header .Header__title h1.Header__titleInner {
+          font-size: 1.6rem; } }
+      .Header .Header__title h1.Header__titleInner .Header__homeLink {
+        padding-right: 1rem; }
+      .Header .Header__title h1.Header__titleInner .Header__hamburger {
+        width: 8rem;
+        padding-left: 0.25rem;
+        padding-right: 0.25rem; }
+        @media screen and (max-width: 1200px) {
+          .Header .Header__title h1.Header__titleInner .Header__hamburger {
+            width: 4rem; } }
   .Header .Header__user {
     display: flex;
     align-content: center;

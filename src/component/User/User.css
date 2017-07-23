@@ -1,12 +1,36 @@
 @charset "UTF-8";
+@media screen and (min-width: 900px) {
+  .ifSmall {
+    display: none; } }
+
+@media screen and (max-width: 900px) {
+  .ifNotSmall {
+    display: none; } }
+
+@media screen and (min-width: 1200px) {
+  .ifMedium {
+    display: none; } }
+
+@media screen and (max-width: 1200px) {
+  .ifNotMedium {
+    display: none; } }
+
 h1, h2, h3, h4, h5, h6 {
   margin: 0;
   padding: 0; }
 
 .pageHeader {
+  padding-top: 1rem;
   font-family: lota_grotesque_alt_1black, "Helvetica Neue", Helvetica, sans-serif;
-  font-size: 2rem;
+  font-size: 2.1rem;
   text-transform: none; }
+  @media screen and (max-width: 900px) {
+    .pageHeader {
+      font-size: 1.6rem; } }
+
+.pathSuffix {
+  color: rgba(254, 251, 210, 0.5);
+  text-transform: none !important; }
 
 .dark {
   background-color: #005766;

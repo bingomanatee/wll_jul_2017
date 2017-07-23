@@ -1,12 +1,36 @@
 @charset "UTF-8";
+@media screen and (min-width: 900px) {
+  .ifSmall {
+    display: none; } }
+
+@media screen and (max-width: 900px) {
+  .ifNotSmall {
+    display: none; } }
+
+@media screen and (min-width: 1200px) {
+  .ifMedium {
+    display: none; } }
+
+@media screen and (max-width: 1200px) {
+  .ifNotMedium {
+    display: none; } }
+
 h1, h2, h3, h4, h5, h6 {
   margin: 0;
   padding: 0; }
 
 .pageHeader {
+  padding-top: 1rem;
   font-family: lota_grotesque_alt_1black, "Helvetica Neue", Helvetica, sans-serif;
-  font-size: 2rem;
+  font-size: 2.1rem;
   text-transform: none; }
+  @media screen and (max-width: 900px) {
+    .pageHeader {
+      font-size: 1.6rem; } }
+
+.pathSuffix {
+  color: rgba(254, 251, 210, 0.5);
+  text-transform: none !important; }
 
 .dark {
   background-color: #005766;
@@ -34,30 +58,12 @@ h1, h2, h3, h4, h5, h6 {
   flex-wrap: nowrap;
   font-size: 1rem !important;
   line-height: 100% !important; }
-  .ArticleList__row.ArticleList___row-article:hover {
-    /*     @media screen and (min-width: $responsiveLarge) {
-         .ArticleList__rowCell.articleList__rowCell-content {
-           width: 100%;
-           min-width: 0;
-           h3 {
-             @include headerStyle(0.8);
-             @include bodyFont(2 * $articleBFscale * $bodyLineHeight);
-             text-overflow: ellipsis;
-             white-space: nowrap;
-             overflow: hidden;
-             min-width: 0;
-           }
-           p {
-             display: none;
-           }
-         }
-       } */ }
-    .ArticleList__row.ArticleList___row-article:hover .ArticleList__rowCell {
-      background-color: #fbf056; }
-      .ArticleList__row.ArticleList___row-article:hover .ArticleList__rowCell h3 {
-        text-decoration: underline; }
-      .ArticleList__row.ArticleList___row-article:hover .ArticleList__rowCell.dark {
-        background-color: #00414d; }
+  .ArticleList__row.ArticleList___row-article:hover .ArticleList__rowCell {
+    background-color: #fbf056; }
+    .ArticleList__row.ArticleList___row-article:hover .ArticleList__rowCell h3 {
+      text-decoration: underline; }
+    .ArticleList__row.ArticleList___row-article:hover .ArticleList__rowCell.dark {
+      background-color: #00414d; }
   .ArticleList__row.articleList__row-sort {
     border-bottom: 1px solid #a6d2a2; }
     .ArticleList__row.articleList__row-sort .ArticleList__rowCell {
@@ -80,23 +86,30 @@ h1, h2, h3, h4, h5, h6 {
       flex-direction: column;
       justify-content: center; }
     .ArticleList__row .ArticleList__rowCell.ArticleList__rowCell-path {
-      width: 4rem;
+      width: 8rem;
       padding-right: 0.5rem; }
-      @media screen and (min-width: 1200px) {
+      @media screen and (max-width: 1200px) {
         .ArticleList__row .ArticleList__rowCell.ArticleList__rowCell-path {
-          width: 6rem; } }
+          width: 4rem; } }
       .ArticleList__row .ArticleList__rowCell.ArticleList__rowCell-path .ArticleList__rowCellInner.ArticleList__rowCellInner-path {
         width: 100%;
         display: flex;
         flex-direction: row;
         justify-content: flex-end;
         align-items: flex-start;
-        font-size: 1.6rem;
+        font-size: 1.68rem;
         font-family: lota_grotesque_alt_1exLt, "Helvetica Neue", Helvetica, sans-serif;
         font-weight: 100;
         text-transform: uppercase;
         font-size: 3.01391rem;
         line-height: 3.00713rem; }
+        @media screen and (max-width: 900px) {
+          .ArticleList__row .ArticleList__rowCell.ArticleList__rowCell-path .ArticleList__rowCellInner.ArticleList__rowCellInner-path {
+            font-size: 1.28rem; } }
+        @media screen and (max-width: 1200px) {
+          .ArticleList__row .ArticleList__rowCell.ArticleList__rowCell-path .ArticleList__rowCellInner.ArticleList__rowCellInner-path {
+            font-size: 1.333rem;
+            line-height: 1.33rem; } }
     .ArticleList__row .ArticleList__rowCell.articleList__rowCell-content {
       flex-grow: 1;
       flex-shrink: 1; }
@@ -138,10 +151,13 @@ h1, h2, h3, h4, h5, h6 {
       color: #005766; }
       @media screen and (min-width: 1200px) {
         .ArticleList__row .ArticleList__rowCell.ArticleList__rowCell-date:not(.ArticleList__rowCell-sort) .ArticleList__rowCellInner.ArticleList__rowCellInner-date {
-          font-size: 1.6rem;
+          font-size: 1.68rem;
           font-family: lota_grotesque_alt_1exLt, "Helvetica Neue", Helvetica, sans-serif;
           font-weight: 100;
           text-transform: uppercase;
           font-size: 2.00727rem;
           line-height: 2.00275rem;
           text-transform: none; } }
+  @media screen and (min-width: 1200px) and (max-width: 900px) {
+    .ArticleList__row .ArticleList__rowCell.ArticleList__rowCell-date:not(.ArticleList__rowCell-sort) .ArticleList__rowCellInner.ArticleList__rowCellInner-date {
+      font-size: 1.28rem; } }

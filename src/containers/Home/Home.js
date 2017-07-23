@@ -5,17 +5,20 @@ import ArticleList from '../../component/ArticleList/ArticleLiist';
 export default Component(
   {
     componentDidMount() {
-      Actions.getHomepageArticles();
+      if (!this.props.homepageArticlesLoaded) {
+        Actions.getHomepageArticles();
+      }
     },
     render () {
       console.log('rendering home with props:', this.props);
-      const articles = this.props.articles || [];
-      return <ArticleList title="Top Stories" articles={articles}/>
+      const homepageArticles = this.props.homepageArticles || [];
+      return <ArticleList title="Top Stories" articles={homepageArticles}/>
     }
   },
   (state) => (
     {
-      articles: state.articleState.homepageArticles
+      homepageArticles: state.articleState.homepageArticles,
+      homepageArticlesLoaded: state.articleState.homepageArticlesLoaded
     }
   )
 )

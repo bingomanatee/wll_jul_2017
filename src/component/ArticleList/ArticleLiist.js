@@ -3,6 +3,7 @@ import './ArticleList.css';
 import SortIcon from './../../component/SortIcon/SortIcon';
 import moment from 'moment';
 import _ from 'lodash';
+import pathToInitial from '../../utils/pathToInitial';
 
 const SORTCOL_PATH = 'path';
 const SORTCOL_DATE = 'date';
@@ -20,18 +21,6 @@ const dateToTime = _.memoize((dateString) => {
   }
   return Date.parse(dateString);
 });
-
-const pathToArticle = (path) => {
-  return path.split('/').reduce((memo, item) => {
-    if (item === 'articles') {
-      return '';
-    }
-    if (!item || /\.md/.test(item)) {
-      return memo;
-    }
-    return item.substr(0, 2);
-  }, '');
-}
 
 const articleDate = (date) => {
   let articleDate = moment(date);
@@ -108,7 +97,7 @@ export default class ArticleList extends React.Component {
     let sortedArticles;
     switch (this.state.realSortColumn) {
       case SORTCOL_PATH:
-        sortedArticles = _.sortBy(articles, (article) => pathToArticle(article.path), 'title');
+        sortedArticles = _.sortBy(articles, (article) => pathToInitial(article.path), 'title');
         break;
 
       case SORTCOL_CONTENT:
@@ -138,7 +127,7 @@ export default class ArticleList extends React.Component {
           <div className="ArticleList__rowCellPathInner ArticleList__rowCellPathInner-path">{titlePath}</div>
         </div>
         <div className="ArticleList__rowCell articleList__rowCell-content">
-          <h2 className="pageHeader">{title} [{this.sortOrder()}]</h2>
+          <h2 className="pageHeader">{title}</h2>
         </div>
       </div>
       <div className="ArticleList__row articleList__row-sort">
@@ -165,7 +154,7 @@ export default class ArticleList extends React.Component {
         <div className="ArticleList__row ArticleList___row-article" key={'article_' + article.path + _ + 'i'}>
           <div className="ArticleList__rowCell ArticleList__rowCell-path dark">
             <div className="ArticleList__rowCellInner ArticleList__rowCellInner-path">
-              <div>{pathToArticle(article.path)}</div>
+              <div>{pathToInitial(article.path)}</div>
             </div>
           </div>
           <div className="ArticleList__rowCell articleList__rowCell-content">

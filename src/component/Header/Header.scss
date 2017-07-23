@@ -1,5 +1,33 @@
 @import '../../style/styles';
 
+.HeaderDirNav {
+  display: flex;
+  width: 100%;
+  flex-direction: row-reverse;
+  .HeaderDirNav__item {
+    @include headerStyle(0.666);
+    padding: 0.25rem 1rem;
+    @include darkHover();
+  }
+  @media screen and (max-width: $responsiveLarge) {
+    display: none;
+  }
+  @media screen and(max-width: $responsiveMedium) {
+    background-color: black !important;
+    border: 1px solid white;
+  }
+}
+
+.HeaderDirNav__close {
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+
+  @include headerStyle(0.666);
+  text-decoration: none;
+  text-align: center;
+  @include darkHover();
+}
+
 .Header {
   flex-grow: 0;
   flex-shrink: 0;
@@ -10,7 +38,7 @@
     flex-direction: row;
     flex-grow: 1;
     flex-shrink: 1;
-    h1 {
+    h1.Header__titleInner {
       color: $lightColor;
       overflow: hidden;
       white-space:nowrap;
@@ -20,6 +48,17 @@
       padding: 0;
       line-height: 100%;
       text-shadow: 0 2px 3px rgba(0,0,0,0.80);
+      display: flex;
+      flex-direction: row;
+      align-content: center;
+      .Header__homeLink {
+        padding-right: 1rem;
+      }
+      .Header__hamburger {
+        @include leftMargin();
+        padding-left: 0.25rem;
+        padding-right: 0.25rem;
+      }
     }
   }
   .Header__user {

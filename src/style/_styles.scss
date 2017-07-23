@@ -7,30 +7,51 @@ $navColorOnLight: hsl(240, 100%, 50%);
 $lightColor: hsl(56, 95%, 91%);
 $lightColorHover: darken($lightColor, 25%);
 $subFontColor: transparentize($darkColor, 0.2);
+$pathWidthSmall: 4rem;
+$pathWidth: 8rem;
 
 $headerFont: lota_grotesque_alt_1exLt, 'Helvetica Neue', Helvetica, sans-serif;
 $contentHeaderFont: lota_grotesque_alt_1black, 'Helvetica Neue', Helvetica, sans-serif;
-$subHeaderFontFamily: lota_grotesque_alt_1semibold,'Helvetica Neue', Helvetica, sans-serif;
+$subHeaderFontFamily: lota_grotesque_alt_1semibold, 'Helvetica Neue', Helvetica, sans-serif;
 
 $baseFontSize: 16px;
 $bodyLineHeight: 1.33;
-$largeFontSize: 18px;
-$veryLargeFontSize: 20px;
+$largeFontSize: 16px;
+$veryLargeFontSize: 18px;
 $responsiveMedium: 900px;
 $responsiveLarge: 1200px;
 
 $headerPaddingHoriz: 1rem;
 $headerPaddingVerti: 0.25rem;
 
+$suffixColor: transparentize($lightColor, 0.5);
+
+@mixin darkHover() {
+  &:hover {
+    background-color: $darkColorHover;
+    color: $lightColorHover;
+  }
+}
+@mixin leftMargin() {
+  width: $pathWidth;
+  @media screen and (max-width: $responsiveLarge) {
+    width: $pathWidthSmall;
+  }
+}
+
 @mixin largeFontSize($scale: 1) {
-  font-size: 2rem * $scale;
+  font-size: 2.1rem * $scale;
+  @media screen and (max-width: $responsiveMedium) {
+    font-size: 1.6rem * $scale;
+  }
 }
 
 @mixin minorText {
   color: $subFontColor;
-  font-family :lota_grotesque_alt_1light;
-  font-weight :300;
+  font-family: lota_grotesque_alt_1light;
+  font-weight: 300;
 }
+
 @mixin bodyFont($scale) {
   font-size: $scale * 1.333rem;
   line-height: $scale * $bodyLineHeight * 1rem;
@@ -44,9 +65,34 @@ $headerPaddingVerti: 0.25rem;
 }
 
 @mixin contentHeaderStyle() {
+  padding-top: 1rem;
   font-family: $contentHeaderFont;
   @include largeFontSize(1);
   text-transform: none;
+}
+
+.ifSmall {
+  @media screen and (min-width: $responsiveMedium) {
+    display: none;
+  }
+}
+
+.ifNotSmall {
+  @media screen and (max-width: $responsiveMedium) {
+    display: none;
+  }
+}
+
+.ifMedium {
+  @media screen and (min-width: $responsiveLarge) {
+    display: none;
+  }
+}
+
+.ifNotMedium {
+  @media screen and (max-width: $responsiveLarge) {
+    display: none;
+  }
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -56,6 +102,11 @@ h1, h2, h3, h4, h5, h6 {
 
 .pageHeader {
   @include contentHeaderStyle();
+}
+
+.pathSuffix {
+  color: $suffixColor;
+  text-transform: none !important;
 }
 
 .dark {
