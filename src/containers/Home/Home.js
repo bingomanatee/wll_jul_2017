@@ -10,10 +10,7 @@ export default Component(
     render () {
       console.log('rendering home with props:', this.props);
       const articles = this.props.articles || [];
-      return <div>
-        <h2 className="PageHead">Articles</h2>
-        <ArticleList articles={articles} />
-      </div>
+      return <ArticleList title="Top Stories" articles={articles}/>
     }
   },
   (state) => (

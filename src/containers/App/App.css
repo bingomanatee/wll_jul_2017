@@ -1,3 +1,26 @@
+@charset "UTF-8";
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0; }
+
+.pageHeader {
+  font-family: lota_grotesque_alt_1black, "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 2rem;
+  text-transform: none; }
+
+.dark {
+  background-color: #005766;
+  color: #fefbd2; }
+  .dark .link {
+    color: white;
+    text-transform: uppercase; }
+    .dark .link:hover::before {
+      content: '«';
+      color: white; }
+    .dark .link:hover:after {
+      content: '»';
+      color: white; }
+
 .App {
   display: flex;
   flex-direction: column;
@@ -9,3 +32,20 @@
 
 #jumpsuit-root, #root {
   height: 100%; }
+
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'lota_grotesque_alt_2regular', "Helvetica Neue", sans-serif; }
+
+html {
+  height: 100%;
+  font-size: 16px;
+  background-color: #fefbd2; }
+  @media screen and (min-width: 900px) {
+    html {
+      font-size: 18px; } }
+  @media screen and (min-width: 1200px) {
+    html {
+      font-size: 20px; } }

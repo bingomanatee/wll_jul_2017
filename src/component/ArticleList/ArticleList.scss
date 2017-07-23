@@ -1,36 +1,151 @@
 @import '../../style/_styles.scss';
 
-,ArticleList {
+$articleBFscale: 0.85;
+
+.ArticleList {
   display: flex;
-  width: 100%;
   flex-direction: column;
+  width: 100%;
 }
 
 .ArticleList__row {
-  min-height: 3rem;
+  display: flex;
   width: 100%;
-  display: flex;
-  flex-direction:row;
-  min-height: 3rem;
-  align-items: stretch;
-}
-
-.articleList__rowCell-content{
-  flex-grow: 1;
-}
-
-.ArticleList__rowCell {
-  display: flex;
   flex-direction: row;
-  align-items: center;
-  flex-grow: 0;
-  flex-shrink: 0;
-  padding:0.5rem 1rem;
-}
+  flex-basis: 100%;
+  flex-wrap: nowrap;
+  font-size: 1rem !important;
+  line-height: 100% !important;
+  &.ArticleList___row-article:hover {
+    .ArticleList__rowCell {
+      background-color: $lightColorHover;
+      h3 {
+        text-decoration: underline
+      }
+      &.dark {
+        background-color: $darkColorHover;
+      }
+    }
+    @media screen and (max-width: $responsiveLarge) {
+      .ArticleList__rowCell.articleList__rowCell-content {
 
-.ArticleList__rowCell-path {
- min-width: 4rem;
-  justify-content: flex-end;
-  @include headerStyle(0.8);
-  padding-right: 0.25rem;
+      }
+    }
+    /*     @media screen and (min-width: $responsiveLarge) {
+         .ArticleList__rowCell.articleList__rowCell-content {
+           width: 100%;
+           min-width: 0;
+           h3 {
+             @include headerStyle(0.8);
+             @include bodyFont(2 * $articleBFscale * $bodyLineHeight);
+             text-overflow: ellipsis;
+             white-space: nowrap;
+             overflow: hidden;
+             min-width: 0;
+           }
+           p {
+             display: none;
+           }
+         }
+       } */
+  }
+
+  &.articleList__row-sort {
+    .ArticleList__rowCell {
+      padding: 0.25rem 1rem;
+      @media screen and (min-width: $responsiveLarge) {
+        padding: 0.5rem 1rem;
+      }
+    }
+    border-bottom: 1px solid $secondaryColor;
+  }
+
+  .ArticleList__rowCell {
+    flex-grow: 0;
+    flex-shrink: 0;
+    display: flex;
+    padding: 0.5rem 1rem;
+    @media screen and (min-width: $responsiveLarge) {
+      padding: 1rem 1rem;
+    }
+    .ArticleList__rowCellInner {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    &.ArticleList__rowCell-path {
+      width: 4rem;
+      @media screen and (min-width: $responsiveLarge) {
+        width: 6rem;
+      }
+      padding-right: 0.5rem;
+      .ArticleList__rowCellInner.ArticleList__rowCellInner-path {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: flex-start;
+        @include headerStyle(0.8);
+        @include bodyFont(2 * $articleBFscale * $bodyLineHeight);
+      }
+
+    }
+
+    &.articleList__rowCell-content {
+      flex-grow: 1;
+      flex-shrink: 1;
+      h3 {
+        font-family: $subHeaderFontFamily;
+        font-weight: 600;
+        @include bodyFont(1);
+        text-align: left;
+      }
+      p {
+        margin: 0;
+        @include bodyFont($articleBFscale);
+        @include minorText();
+        text-align: left;
+        .ArticleList__dateInline {
+          color: $darkColorText;
+          @media screen and (min-width: $responsiveLarge) {
+            display: none;
+          }
+        }
+      }
+    }
+
+    .ArticleList__dateInline {
+      display: block;
+      margin-left: 1rem;
+      white-space: nowrap;
+      @media screen and (min-width: $responsiveMedium) {
+        display: none;
+      }
+    }
+
+    &.ArticleList__rowCell-date:not(.ArticleList__rowCell-sort) {
+      @media screen and (max-width: $responsiveMedium) {
+        display: none;
+      }
+
+      .ArticleList__rowCellInner.ArticleList__rowCellInner-date {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: flex-start;
+
+        @media screen and (min-width: $responsiveLarge) {
+          @include headerStyle(0.8);
+          @include bodyFont(2 * 0.666 * $articleBFscale * $bodyLineHeight);
+          text-transform: none;
+        }
+        color: $darkColor;
+      }
+    }
+  }
+
 }

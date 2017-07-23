@@ -11,12 +11,10 @@
     flex-grow: 1;
     flex-shrink: 1;
     h1 {
-      font-family: $headerFont;
       color: $lightColor;
-      font-weight: 300;
       overflow: hidden;
       white-space:nowrap;
-      @include largeFontSize();
+      @include headerStyle();
       display: block;
       margin: 0;
       padding: 0;

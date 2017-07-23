@@ -3,45 +3,13 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
   padding: 0; }
 
-body {
-  height: 100%;
-  margin: 0;
-  padding: 0; }
-  body * {
-    font-family: 'lota_grotesque_alt_2regular', "Helvetica Neue", sans-serif; }
-
-html {
-  height: 100%;
-  font-size: 16px;
-  background-color: #fefbd2; }
-  @media screen and (min-width: 900px) {
-    html {
-      font-size: 18px; } }
-  @media screen and (min-width: 1200px) {
-    html {
-      font-size: 20px; } }
-
-.link {
-  cursor: pointer;
-  text-transform: uppercase;
-  color: blue;
-  padding: 1rem;
-  display: block; }
-  .link:hover::before {
-    content: '«';
-    color: blue; }
-  .link:hover:after {
-    content: '»';
-    color: blue; }
-  .link::before {
-    content: '«';
-    color: transparent; }
-  .link:after {
-    content: '»';
-    color: transparent; }
+.pageHeader {
+  font-family: lota_grotesque_alt_1black, "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 2rem;
+  text-transform: none; }
 
 .dark {
-  background-color: #007a8a;
+  background-color: #005766;
   color: #fefbd2; }
   .dark .link {
     color: white;
@@ -68,12 +36,12 @@ html {
     flex-grow: 1;
     flex-shrink: 1; }
     .Header .Header__title h1 {
-      font-family: lota_grotesque_alt_2exlight, "Helvetica Neue", sans-serif;
       color: #fefbd2;
-      font-weight: 300;
       overflow: hidden;
       white-space: nowrap;
       font-size: 2rem;
+      font-family: lota_grotesque_alt_1exLt, "Helvetica Neue", Helvetica, sans-serif;
+      font-weight: 100;
       text-transform: uppercase;
       display: block;
       margin: 0;

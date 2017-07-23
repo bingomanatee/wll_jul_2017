@@ -22,11 +22,11 @@ const sortList = {
   }
 };
 
-const advanceCycle = {a: 'd', d: 'n', n: 'a'}
+export const advanceCycle = {a: 'd', d: 'n', n: 'a'}
 const advanceTo = (direction) => advanceCycle[direction];
 export default (props) => (
-  <div className="SortIcon" onClick={() => props.setSort(advanceTo(props.direction || 'n'))}>
-    <img src={sortList[props.color || 'dark'][props.direction || 'n']}
+  <div className="SortIcon" onClick={() => props.setSort(advanceTo(props.direction))}>
+    <img src={sortList[props.color || 'light'][props.direction || 'n']}
          className="SortIcon__img"/>
   </div>
 );
