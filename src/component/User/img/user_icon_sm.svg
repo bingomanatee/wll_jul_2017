@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="26px" height="24px" viewBox="0 0 26 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.2 (39069) - http://www.bohemiancoding.com/sketch -->
+    <title>user_icon_sm</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <ellipse id="path-1" cx="12.5" cy="12" rx="12.5" ry="12"></ellipse>
+    </defs>
+    <g id="Welcome" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="user_icon" transform="translate(-88.000000, -83.000000)">
+            <g id="user-icon" transform="translate(88.394422, 83.000000)">
+                <g>
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <g id="Mask"></g>
+                    <ellipse id="head" fill="#FEFBD4" mask="url(#mask-2)" cx="12.8205128" cy="12.3076923" rx="7.69230769" ry="7.38461538"></ellipse>
+                    <rect id="Rectangle" fill="#FEFBD4" mask="url(#mask-2)" x="0" y="18.4615385" width="25" height="7.38461538"></rect>
+                    <ellipse id="Oval" stroke="#FEFBD4" stroke-width="3" mask="url(#mask-2)" cx="12.5" cy="12" rx="12.5" ry="12"></ellipse>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
