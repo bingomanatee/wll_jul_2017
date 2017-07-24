@@ -72,7 +72,7 @@ $articleBFscale: 0.85;
         @include bodyFont(2 * $articleBFscale * $bodyLineHeight);
         line-height: 1;
         padding-right: 0;
-        @media screen and (max-width: $responsiveLarge) {
+        @media screen and (max-width: $responsiveMedium) {
           @include bodyFont(1);
         }
       }

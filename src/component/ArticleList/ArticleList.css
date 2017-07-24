@@ -113,11 +113,11 @@ h1, h2, h3, h4, h5, h6 {
         @media screen and (max-width: 900px) {
           .ArticleList__row .ArticleList__rowCell.ArticleList__rowCell-path .ArticleList__rowCellInner.ArticleList__rowCellInner-path {
             font-size: 2.41113rem; } }
-        @media screen and (max-width: 1200px) {
+        @media screen and (max-width: 900px) {
           .ArticleList__row .ArticleList__rowCell.ArticleList__rowCell-path .ArticleList__rowCellInner.ArticleList__rowCellInner-path {
             font-size: 1.333rem;
             line-height: 1.33; } }
-  @media screen and (max-width: 1200px) and (max-width: 900px) {
+  @media screen and (max-width: 900px) and (max-width: 900px) {
     .ArticleList__row .ArticleList__rowCell.ArticleList__rowCell-path .ArticleList__rowCellInner.ArticleList__rowCellInner-path {
       font-size: 1.0664rem; } }
     .ArticleList__row .ArticleList__rowCell.articleList__rowCell-content {
