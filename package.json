@@ -6,6 +6,7 @@
     "auth0-js": "^8.7.0",
     "jumpsuit": "^2.1.2",
     "lodash": "^4.17.4",
+    "marked": "^0.3.6",
     "moment": "^2.18.1",
     "node-fetch": "^1.7.1",
     "node-sass-chokidar": "0.0.3",

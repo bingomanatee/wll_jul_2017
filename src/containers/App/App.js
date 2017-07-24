@@ -7,6 +7,9 @@ export default Component({
 
     componentDidMount() {
         Actions.initAuth();
+        if (!this.props.articlesLoaded) {
+          Actions.getArticles();
+        }
     },
 
     render() {
@@ -19,4 +22,5 @@ export default Component({
             </div>
         )
     }
-})
+}, (state) => ({articlesLoaded: state.articleState.articlesLoaded})
+)

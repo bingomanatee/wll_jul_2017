@@ -22,11 +22,12 @@ h1, h2, h3, h4, h5, h6 {
 .pageHeader {
   padding-top: 1rem;
   font-family: lota_grotesque_alt_1black, "Helvetica Neue", Helvetica, sans-serif;
-  font-size: 2.1rem;
+  line-height: 1.33;
+  font-size: 3rem;
   text-transform: none; }
   @media screen and (max-width: 900px) {
     .pageHeader {
-      font-size: 1.6rem; } }
+      font-size: 2.4rem; } }
 
 .pathSuffix {
   color: rgba(254, 251, 210, 0.5);
@@ -97,19 +98,26 @@ h1, h2, h3, h4, h5, h6 {
         flex-direction: row;
         justify-content: flex-end;
         align-items: flex-start;
-        font-size: 1.68rem;
+        line-height: 1.33;
+        font-size: 2.4rem;
         font-family: lota_grotesque_alt_1exLt, "Helvetica Neue", Helvetica, sans-serif;
         font-weight: 100;
         text-transform: uppercase;
         font-size: 3.01391rem;
-        line-height: 3.00713rem; }
+        line-height: 1.33; }
         @media screen and (max-width: 900px) {
           .ArticleList__row .ArticleList__rowCell.ArticleList__rowCell-path .ArticleList__rowCellInner.ArticleList__rowCellInner-path {
-            font-size: 1.28rem; } }
+            font-size: 1.92rem; } }
+        @media screen and (max-width: 900px) {
+          .ArticleList__row .ArticleList__rowCell.ArticleList__rowCell-path .ArticleList__rowCellInner.ArticleList__rowCellInner-path {
+            font-size: 2.41113rem; } }
         @media screen and (max-width: 1200px) {
           .ArticleList__row .ArticleList__rowCell.ArticleList__rowCell-path .ArticleList__rowCellInner.ArticleList__rowCellInner-path {
             font-size: 1.333rem;
-            line-height: 1.33rem; } }
+            line-height: 1.33; } }
+  @media screen and (max-width: 1200px) and (max-width: 900px) {
+    .ArticleList__row .ArticleList__rowCell.ArticleList__rowCell-path .ArticleList__rowCellInner.ArticleList__rowCellInner-path {
+      font-size: 1.0664rem; } }
     .ArticleList__row .ArticleList__rowCell.articleList__rowCell-content {
       flex-grow: 1;
       flex-shrink: 1; }
@@ -117,16 +125,22 @@ h1, h2, h3, h4, h5, h6 {
         font-family: lota_grotesque_alt_1semibold, "Helvetica Neue", Helvetica, sans-serif;
         font-weight: 600;
         font-size: 1.333rem;
-        line-height: 1.33rem;
+        line-height: 1.33;
         text-align: left; }
+        @media screen and (max-width: 900px) {
+          .ArticleList__row .ArticleList__rowCell.articleList__rowCell-content h3 {
+            font-size: 1.0664rem; } }
       .ArticleList__row .ArticleList__rowCell.articleList__rowCell-content p {
         margin: 0;
         font-size: 1.13305rem;
-        line-height: 1.1305rem;
+        line-height: 1.33;
         color: rgba(0, 87, 102, 0.8);
         font-family: lota_grotesque_alt_1light;
         font-weight: 300;
         text-align: left; }
+        @media screen and (max-width: 900px) {
+          .ArticleList__row .ArticleList__rowCell.articleList__rowCell-content p {
+            font-size: 0.90644rem; } }
         .ArticleList__row .ArticleList__rowCell.articleList__rowCell-content p .ArticleList__dateInline {
           color: #00343d; }
           @media screen and (min-width: 1200px) {
@@ -151,13 +165,17 @@ h1, h2, h3, h4, h5, h6 {
       color: #005766; }
       @media screen and (min-width: 1200px) {
         .ArticleList__row .ArticleList__rowCell.ArticleList__rowCell-date:not(.ArticleList__rowCell-sort) .ArticleList__rowCellInner.ArticleList__rowCellInner-date {
-          font-size: 1.68rem;
+          line-height: 1.33;
+          font-size: 2.4rem;
           font-family: lota_grotesque_alt_1exLt, "Helvetica Neue", Helvetica, sans-serif;
           font-weight: 100;
           text-transform: uppercase;
           font-size: 2.00727rem;
-          line-height: 2.00275rem;
+          line-height: 1.33;
           text-transform: none; } }
   @media screen and (min-width: 1200px) and (max-width: 900px) {
     .ArticleList__row .ArticleList__rowCell.ArticleList__rowCell-date:not(.ArticleList__rowCell-sort) .ArticleList__rowCellInner.ArticleList__rowCellInner-date {
-      font-size: 1.28rem; } }
+      font-size: 1.92rem; } }
+  @media screen and (min-width: 1200px) and (max-width: 900px) {
+    .ArticleList__row .ArticleList__rowCell.ArticleList__rowCell-date:not(.ArticleList__rowCell-sort) .ArticleList__rowCellInner.ArticleList__rowCellInner-date {
+      font-size: 1.60581rem; } }

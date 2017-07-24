@@ -22,11 +22,11 @@ h1, h2, h3, h4, h5, h6 {
 .pageHeader {
   padding-top: 1rem;
   font-family: lota_grotesque_alt_1black, "Helvetica Neue", Helvetica, sans-serif;
-  font-size: 2.1rem;
+  font-size: 16px;
   text-transform: none; }
   @media screen and (max-width: 900px) {
     .pageHeader {
-      font-size: 1.6rem; } }
+      font-size: 12.8px; } }
 
 .pathSuffix {
   color: rgba(254, 251, 210, 0.5);

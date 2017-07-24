@@ -1,6 +1,6 @@
 import React from 'react'
 import {Component, Actions} from 'jumpsuit';
-import ArticleList from '../../component/ArticleList/ArticleLiist';
+import ArticleList from '../../component/ArticleList/ArticleList';
 
 export default Component(
   {
@@ -8,6 +8,7 @@ export default Component(
       if (!this.props.homepageArticlesLoaded) {
         Actions.getHomepageArticles();
       }
+      Actions.setCurrentDir(null);
     },
     render () {
       console.log('rendering home with props:', this.props);

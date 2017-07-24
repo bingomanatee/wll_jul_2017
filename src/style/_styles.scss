@@ -11,13 +11,15 @@ $pathWidthSmall: 4rem;
 $pathWidth: 8rem;
 
 $headerFont: lota_grotesque_alt_1exLt, 'Helvetica Neue', Helvetica, sans-serif;
+
 $contentHeaderFont: lota_grotesque_alt_1black, 'Helvetica Neue', Helvetica, sans-serif;
 $subHeaderFontFamily: lota_grotesque_alt_1semibold, 'Helvetica Neue', Helvetica, sans-serif;
 
+$largeFontSize: 3rem;
+$bodyFontSize: 1.333rem;
+$mediumScaledown: 0.8;
 $baseFontSize: 16px;
 $bodyLineHeight: 1.33;
-$largeFontSize: 16px;
-$veryLargeFontSize: 18px;
 $responsiveMedium: 900px;
 $responsiveLarge: 1200px;
 
@@ -32,6 +34,7 @@ $suffixColor: transparentize($lightColor, 0.5);
     color: $lightColorHover;
   }
 }
+
 @mixin leftMargin() {
   width: $pathWidth;
   @media screen and (max-width: $responsiveLarge) {
@@ -40,9 +43,10 @@ $suffixColor: transparentize($lightColor, 0.5);
 }
 
 @mixin largeFontSize($scale: 1) {
-  font-size: 2.1rem * $scale;
+  line-height: $bodyLineHeight;
+  font-size: $largeFontSize * $scale;
   @media screen and (max-width: $responsiveMedium) {
-    font-size: 1.6rem * $scale;
+    font-size: $largeFontSize * $mediumScaledown * $scale;
   }
 }
 
@@ -53,8 +57,11 @@ $suffixColor: transparentize($lightColor, 0.5);
 }
 
 @mixin bodyFont($scale) {
-  font-size: $scale * 1.333rem;
-  line-height: $scale * $bodyLineHeight * 1rem;
+  font-size: $scale * $bodyFontSize;
+  line-height: $bodyLineHeight;
+  @media screen and (max-width: $responsiveMedium) {
+    font-size: $scale * $bodyFontSize * $mediumScaledown;
+  }
 }
 
 @mixin headerStyle($scale: 1) {

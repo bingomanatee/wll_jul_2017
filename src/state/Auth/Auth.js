@@ -29,17 +29,13 @@ export default class Auth {
             if (authResult && authResult.accessToken && authResult.idToken) {
                 this.setSession(authResult);
                 this.loadUser();
-                this.goHome();
+                Actions.goHome();
             } else if (err) {
-                this.goHome();
+                Actions.goHome();
                 console.log(err);
                 alert(`Error: ${err.error}. Check the console for further details.`);
             }
         });
-    }
-
-    goHome() {
-        Goto({path: '/', hash: null, query: null});
     }
 
     setSession(authResult) {
@@ -49,7 +45,7 @@ export default class Auth {
         localStorage.setItem('id_token', authResult.idToken);
         localStorage.setItem('expires_at', expiresAt);
         // navigate to the home route
-        this.goHome();
+        Actions.goHome();
     }
 
     logout() {
@@ -59,7 +55,7 @@ export default class Auth {
         localStorage.removeItem('expires_at');
         // navigate to the home route
         Actions.resetUser();
-        this.goHome();
+        Actions.goHome();
     }
 
     get accessToken() {

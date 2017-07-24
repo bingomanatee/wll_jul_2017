@@ -5,9 +5,19 @@
   width: 100%;
   flex-direction: row-reverse;
   .HeaderDirNav__item {
-    @include headerStyle(0.666);
+    @include bodyFont(1);
+    font-family: lota_grotesque_alt_1thin, 'Helvetica Neue', Helvetica, sans-serif;
+    font-weight: 200;
+    text-transform: uppercase;
     padding: 0.25rem 1rem;
     @include darkHover();
+    &.HeaderDirNav__item-active {
+      color: $darkColor !important;
+      background-color: $lightColor;
+      .pathSuffix {
+        color: $darkColor !important;
+      }
+    }
   }
   @media screen and (max-width: $responsiveLarge) {
     display: none;
@@ -34,20 +44,20 @@
   .Header__title {
     margin: $headerPaddingVerti $headerPaddingHoriz;
     display: flex;
-    align-items:center;
+    align-items: center;
     flex-direction: row;
     flex-grow: 1;
     flex-shrink: 1;
     h1.Header__titleInner {
       color: $lightColor;
       overflow: hidden;
-      white-space:nowrap;
+      white-space: nowrap;
       @include headerStyle();
       display: block;
       margin: 0;
       padding: 0;
       line-height: 100%;
-      text-shadow: 0 2px 3px rgba(0,0,0,0.80);
+      text-shadow: 0 2px 3px rgba(0, 0, 0, 0.80);
       display: flex;
       flex-direction: row;
       align-content: center;
@@ -63,13 +73,13 @@
   }
   .Header__user {
     display: flex;
-    align-content:center;
+    align-content: center;
     flex-direction: row;
     flex-shrink: 0;
     flex-grow: 0;
   }
   display: flex;
-  align-content:center;
+  align-content: center;
   flex-direction: row;
   width: 100%;
 }

@@ -22,11 +22,12 @@ h1, h2, h3, h4, h5, h6 {
 .pageHeader {
   padding-top: 1rem;
   font-family: lota_grotesque_alt_1black, "Helvetica Neue", Helvetica, sans-serif;
-  font-size: 2.1rem;
+  line-height: 1.33;
+  font-size: 3rem;
   text-transform: none; }
   @media screen and (max-width: 900px) {
     .pageHeader {
-      font-size: 1.6rem; } }
+      font-size: 2.4rem; } }
 
 .pathSuffix {
   color: rgba(254, 251, 210, 0.5);
@@ -50,17 +51,23 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
   flex-direction: row-reverse; }
   .HeaderDirNav .HeaderDirNav__item {
-    font-size: 1.3986rem;
-    font-family: lota_grotesque_alt_1exLt, "Helvetica Neue", Helvetica, sans-serif;
-    font-weight: 100;
+    font-size: 1.333rem;
+    line-height: 1.33;
+    font-family: lota_grotesque_alt_1thin, 'Helvetica Neue', Helvetica, sans-serif;
+    font-weight: 200;
     text-transform: uppercase;
     padding: 0.25rem 1rem; }
     @media screen and (max-width: 900px) {
       .HeaderDirNav .HeaderDirNav__item {
-        font-size: 1.0656rem; } }
+        font-size: 1.0664rem; } }
     .HeaderDirNav .HeaderDirNav__item:hover {
       background-color: #00414d;
       color: #fbf056; }
+    .HeaderDirNav .HeaderDirNav__item.HeaderDirNav__item-active {
+      color: #005766 !important;
+      background-color: #fefbd2; }
+      .HeaderDirNav .HeaderDirNav__item.HeaderDirNav__item-active .pathSuffix {
+        color: #005766 !important; }
   @media screen and (max-width: 1200px) {
     .HeaderDirNav {
       display: none; } }
@@ -72,7 +79,8 @@ h1, h2, h3, h4, h5, h6 {
 .HeaderDirNav__close {
   margin-top: 0.5rem;
   padding: 0.5rem;
-  font-size: 1.3986rem;
+  line-height: 1.33;
+  font-size: 1.998rem;
   font-family: lota_grotesque_alt_1exLt, "Helvetica Neue", Helvetica, sans-serif;
   font-weight: 100;
   text-transform: uppercase;
@@ -80,7 +88,7 @@ h1, h2, h3, h4, h5, h6 {
   text-align: center; }
   @media screen and (max-width: 900px) {
     .HeaderDirNav__close {
-      font-size: 1.0656rem; } }
+      font-size: 1.5984rem; } }
   .HeaderDirNav__close:hover {
     background-color: #00414d;
     color: #fbf056; }
@@ -103,7 +111,8 @@ h1, h2, h3, h4, h5, h6 {
       color: #fefbd2;
       overflow: hidden;
       white-space: nowrap;
-      font-size: 2.1rem;
+      line-height: 1.33;
+      font-size: 3rem;
       font-family: lota_grotesque_alt_1exLt, "Helvetica Neue", Helvetica, sans-serif;
       font-weight: 100;
       text-transform: uppercase;
@@ -117,7 +126,7 @@ h1, h2, h3, h4, h5, h6 {
       align-content: center; }
       @media screen and (max-width: 900px) {
         .Header .Header__title h1.Header__titleInner {
-          font-size: 1.6rem; } }
+          font-size: 2.4rem; } }
       .Header .Header__title h1.Header__titleInner .Header__homeLink {
         padding-right: 1rem; }
       .Header .Header__title h1.Header__titleInner .Header__hamburger {

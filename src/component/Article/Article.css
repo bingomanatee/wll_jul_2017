@@ -1,0 +1,84 @@
+@charset "UTF-8";
+@media screen and (min-width: 900px) {
+  .ifSmall {
+    display: none; } }
+
+@media screen and (max-width: 900px) {
+  .ifNotSmall {
+    display: none; } }
+
+@media screen and (min-width: 1200px) {
+  .ifMedium {
+    display: none; } }
+
+@media screen and (max-width: 1200px) {
+  .ifNotMedium {
+    display: none; } }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0; }
+
+.pageHeader {
+  padding-top: 1rem;
+  font-family: lota_grotesque_alt_1black, "Helvetica Neue", Helvetica, sans-serif;
+  line-height: 1.33;
+  font-size: 3rem;
+  text-transform: none; }
+  @media screen and (max-width: 900px) {
+    .pageHeader {
+      font-size: 2.4rem; } }
+
+.pathSuffix {
+  color: rgba(254, 251, 210, 0.5);
+  text-transform: none !important; }
+
+.dark {
+  background-color: #005766;
+  color: #fefbd2; }
+  .dark .link {
+    color: white;
+    text-transform: uppercase; }
+    .dark .link:hover::before {
+      content: '«';
+      color: white; }
+    .dark .link:hover:after {
+      content: '»';
+      color: white; }
+
+.Article {
+  display: flex;
+  flex-direction: row;
+  justify-content: center; }
+  .Article .Article__frame {
+    flex-shrink: 1;
+    padding: 3rem;
+    max-width: 100vw;
+    overflow-x: scroll; }
+    @media screen and (max-width: 900px) {
+      .Article .Article__frame {
+        padding: 1rem; } }
+    .Article .Article__frame article {
+      font-size: 1.4663rem;
+      line-height: 1.33;
+      max-width: 1200px; }
+      @media screen and (max-width: 900px) {
+        .Article .Article__frame article {
+          font-size: 1.17304rem; } }
+      .Article .Article__frame article pre {
+        padding: 1rem;
+        max-width: 100vw;
+        display: block;
+        overflow-x: auto;
+        background-color: white;
+        border-top: 2px solid #fbf056;
+        border-bottom: 2px solid #fbf056;
+        font-size: 1.0664rem;
+        line-height: 1.33; }
+        @media screen and (max-width: 900px) {
+          .Article .Article__frame article pre {
+            font-size: 0.85312rem; } }
+        @media screen and (max-width: 900px) {
+          .Article .Article__frame article pre {
+            padding: 0.5rem;
+            white-space: pre-line; } }

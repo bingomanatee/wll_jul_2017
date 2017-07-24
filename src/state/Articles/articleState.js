@@ -2,34 +2,42 @@ import React from 'react'
 import fetch from 'node-fetch';
 import {Hook, State, Actions, Effect} from 'jumpsuit'
 import _ from 'lodash';
-const URI_ROOT = 'http://wonderlandlabs.com';
+import cleanDirectory from './../../utils/cleanDirectory';
 
-const cloneState = (state) => ({
-  articles: state.articles.slice(),
-  articlesLoaded: state.articlesLoaded,
-  homepageArticles: state.homepageArticles.slice(),
-  homepageArticlesLoaded: state.homepageArticlesLoaded,
-  directories: state.directories.slice()
-});
+const URI_ROOT = 'http://wonderlandlabs.com';
 
 export default State({
   // Initial State
-  initial: {articles: [], directories: [], homepageArticles: [], chapters: [], homepageArticlesLoaded: false, articlesLoaded: false},
+  initial: {
+    articles: [],
+    directories: [],
+    homepageArticles: [],
+    chapters: [],
+    homepageArticlesLoaded: false,
+    articlesLoaded: false,
+    currentArticle: null
+  },
   // Actions
   setHomepageArticles(state, homepageArticles) {
-    let newState = cloneState(state);
+    let newState = _.cloneDeep(state);
     newState.homepageArticles = homepageArticles;
     newState.homepageArticlesLoaded = true;
     return newState;
   },
   setDirectories(state, directories) {
-    let newState = cloneState(state);
+    let newState = _.cloneDeep(state);
     newState.directories = directories;
     return newState;
   },
   setArticles(state, articles) {
-    let newState = cloneState(state);
+    let newState = _.cloneDeep(state);
     newState.articles = articles;
+    newState.articlesLoaded = true;
+    return newState;
+  },
+  setArticle(state, article) {
+    let newState = _.cloneDeep(state);
+    newState.currentArticle =  article;
     newState.articlesLoaded = true;
     return newState;
   }
@@ -39,7 +47,7 @@ Effect('getHomepageArticles', () => {
   fetch(`${URI_ROOT}/homepage-articles`)
     .then((res) => res.json())
     .then((articles) => {
-        console.log('articles:', articles);
+        console.log('homepage articles:', articles);
         Actions.setHomepageArticles(articles);
       }
     ).catch((err) => {
@@ -47,8 +55,20 @@ Effect('getHomepageArticles', () => {
   })
 });
 
+Effect('getArticle', (path) => {
+  fetch(`${URI_ROOT}/article/articles/${cleanDirectory(path)}`)
+    .then((res) => res.json())
+    .then((article) => {
+        console.log('article:', article);
+        Actions.setArticle(article);
+      }
+    ).catch((err) => {
+    console.log('cannot get article: ', path, err);
+  })
+});
+
 Effect('getArticles', () => {
-  fetch(`${URI_ROOT}/articles`)
+  fetch(`${URI_ROOT}/article`)
     .then((res) => res.json())
     .then((articles) => {
         console.log('articles:', articles);
@@ -60,10 +80,11 @@ Effect('getArticles', () => {
 });
 
 Hook((action) => {
-  if (action.type === 'setHomepageArticles') {
+  if (action.type === 'setArticles') {
+    console.log('setting directories');
     const directories = _(action.payload)
       .map('directory')
-      .map((dir) => dir.replace(/^articles(\/)?/, ''))
+      .map(cleanDirectory)
       .uniq()
       .sortBy()
       .value();

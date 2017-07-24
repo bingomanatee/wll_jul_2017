@@ -10,6 +10,8 @@ import App from './containers/App/App'
 import Home from './containers/Home/Home';
 import Counter from './screens/Counter';
 import Callback from './screens/Callback/Callback';
+import Directory from './containers/Directory/Directory';
+import Article from './containers/Article/Article';
 
 // Simple Routing
 Render(states, (
@@ -18,6 +20,8 @@ Render(states, (
       <IndexRoute component={Home} />
       <Route path="counter" component={Counter} />
      <Route path="callback" component={Callback} />
+      <Route path="directory/:directory" component={Directory} />
+      <Route path="article/:currentArticlePath" component={Article} />
     </Route>
   </Router>
 ));

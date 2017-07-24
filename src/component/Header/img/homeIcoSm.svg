@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="14px" viewBox="0 0 20 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.2 (39069) - http://www.bohemiancoding.com/sketch -->
+    <title>homeIcoSm</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Welcome" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="sorters" transform="translate(-98.000000, -66.000000)" fill="#FEFBD4">
+            <polygon id="Triangle" points="108.102783 66 117.454102 71.8421511 98.7514648 71.8421511"></polygon>
+            <rect id="Rectangle" x="102.157629" y="70.1155235" width="12.2621919" height="8.98792481" rx="1"></rect>
+        </g>
+    </g>
+</svg>

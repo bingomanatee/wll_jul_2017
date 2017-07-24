@@ -4,6 +4,7 @@ import SortIcon from './../../component/SortIcon/SortIcon';
 import moment from 'moment';
 import _ from 'lodash';
 import pathToInitial from '../../utils/pathToInitial';
+import {Actions} from 'jumpsuit';
 
 const SORTCOL_PATH = 'path';
 const SORTCOL_DATE = 'date';
@@ -121,6 +122,7 @@ export default class ArticleList extends React.Component {
     const advanceSort = (sortColumn) => {
       return (next) => this.advanceSort(sortColumn, next)
     }
+    const articles = _.filter(this.props.articles, 'published');
     return <div className="ArticleList">
       <div className="ArticleList__row">
         <div className="ArticleList__rowCell ArticleList__rowCell-path dark">
@@ -150,14 +152,14 @@ export default class ArticleList extends React.Component {
           </div>
         </div>
       </div>
-      {this.sortArticles(this.props.articles).map((article, i) => (
+      {this.sortArticles(articles).map((article, i) => (
         <div className="ArticleList__row ArticleList___row-article" key={'article_' + article.path + _ + 'i'}>
           <div className="ArticleList__rowCell ArticleList__rowCell-path dark">
             <div className="ArticleList__rowCellInner ArticleList__rowCellInner-path">
               <div>{pathToInitial(article.path)}</div>
             </div>
           </div>
-          <div className="ArticleList__rowCell articleList__rowCell-content">
+          <div className="ArticleList__rowCell articleList__rowCell-content" onClick={() => Actions.goArticle(article.path)}>
             <div className="ArticleList__rowCellInner">
               <h3>{article.title}</h3>
               <p>{article.description || ''} <span
