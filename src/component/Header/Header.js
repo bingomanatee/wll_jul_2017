@@ -40,6 +40,9 @@ export default (props) => (<div>
       </div>
     </div>
     <div className="HeaderDirNav dark" style={navStyle(props)}>
+      <div className="HeaderDirNav__close ifMedium" style={showIfNav(props)} onClick={() => Actions.goHome()}>
+        <img src={homeIconSm} />   Home
+      </div>
       {props.directories.map((directory, i) => <HeaderDirNav active={cleanDirectory(directory) === cleanDirectory(props.currentDir)}
                                                              key={`${directory}_${i}`} directory={directory} />)}
       <div className="HeaderDirNav__close ifMedium" style={showIfNav(props)} onClick={() => Actions.hideNav()}>

@@ -39,7 +39,7 @@ export default State({
 
 Effect('goDirectory', (directory) => {
   Actions.setCurrentDir(directory);
-  Goto({path: 'directory/' + directory});
+  Goto({path: '/directory/' + directory});
 });
 
 Effect('goArticle', (currentArticlePath) => {

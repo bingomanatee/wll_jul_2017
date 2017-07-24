@@ -70,6 +70,7 @@ $articleBFscale: 0.85;
         align-items: flex-start;
         @include headerStyle(0.8);
         @include bodyFont(2 * $articleBFscale * $bodyLineHeight);
+        line-height: 1 !important;
         @media screen and (max-width: $responsiveLarge) {
           @include bodyFont(1);
         }
@@ -79,14 +80,23 @@ $articleBFscale: 0.85;
     &.articleList__rowCell-content {
       flex-grow: 1;
       flex-shrink: 1;
+      padding-left: 0;
       h3 {
         font-family: $subHeaderFontFamily;
         font-weight: 600;
         @include bodyFont(1);
         text-align: left;
+        .path-secondary {
+          @include headerStyle(0.8);
+          font-weight: 400;
+          @include bodyFont(1);
+          color: $darkColor;
+          text-decoration: none !important;
+        }
       }
       p {
         margin: 0;
+        padding-left: 2rem;
         @include bodyFont($articleBFscale);
         @include minorText();
         text-align: left;
@@ -128,5 +138,10 @@ $articleBFscale: 0.85;
         color: $darkColor;
       }
     }
+  }
+
+  &.ArticleList__row-last {
+    flex-grow: 1;
+    height: 100%;
   }
 }

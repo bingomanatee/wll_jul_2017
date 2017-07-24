@@ -1,19 +1,19 @@
 @charset "UTF-8";
 @media screen and (min-width: 900px) {
   .ifSmall {
-    display: none; } }
+    display: none !important; } }
 
 @media screen and (max-width: 900px) {
   .ifNotSmall {
-    display: none; } }
+    display: none !important; } }
 
 @media screen and (min-width: 1200px) {
   .ifMedium {
-    display: none; } }
+    display: none !important; } }
 
 @media screen and (max-width: 1200px) {
   .ifNotMedium {
-    display: none; } }
+    display: none !important; } }
 
 h1, h2, h3, h4, h5, h6 {
   margin: 0;
@@ -23,11 +23,11 @@ h1, h2, h3, h4, h5, h6 {
   padding-top: 1rem;
   font-family: lota_grotesque_alt_1black, "Helvetica Neue", Helvetica, sans-serif;
   line-height: 1.33;
-  font-size: 3rem;
+  font-size: 2rem;
   text-transform: none; }
   @media screen and (max-width: 900px) {
     .pageHeader {
-      font-size: 2.4rem; } }
+      font-size: 1.6rem; } }
 
 .pathSuffix {
   color: rgba(254, 251, 210, 0.5);
@@ -99,15 +99,16 @@ h1, h2, h3, h4, h5, h6 {
         justify-content: flex-end;
         align-items: flex-start;
         line-height: 1.33;
-        font-size: 2.4rem;
+        font-size: 1.6rem;
         font-family: lota_grotesque_alt_1exLt, "Helvetica Neue", Helvetica, sans-serif;
         font-weight: 100;
         text-transform: uppercase;
         font-size: 3.01391rem;
-        line-height: 1.33; }
+        line-height: 1.33;
+        line-height: 1 !important; }
         @media screen and (max-width: 900px) {
           .ArticleList__row .ArticleList__rowCell.ArticleList__rowCell-path .ArticleList__rowCellInner.ArticleList__rowCellInner-path {
-            font-size: 1.92rem; } }
+            font-size: 1.28rem; } }
         @media screen and (max-width: 900px) {
           .ArticleList__row .ArticleList__rowCell.ArticleList__rowCell-path .ArticleList__rowCellInner.ArticleList__rowCellInner-path {
             font-size: 2.41113rem; } }
@@ -120,7 +121,8 @@ h1, h2, h3, h4, h5, h6 {
       font-size: 1.0664rem; } }
     .ArticleList__row .ArticleList__rowCell.articleList__rowCell-content {
       flex-grow: 1;
-      flex-shrink: 1; }
+      flex-shrink: 1;
+      padding-left: 0; }
       .ArticleList__row .ArticleList__rowCell.articleList__rowCell-content h3 {
         font-family: lota_grotesque_alt_1semibold, "Helvetica Neue", Helvetica, sans-serif;
         font-weight: 600;
@@ -130,8 +132,26 @@ h1, h2, h3, h4, h5, h6 {
         @media screen and (max-width: 900px) {
           .ArticleList__row .ArticleList__rowCell.articleList__rowCell-content h3 {
             font-size: 1.0664rem; } }
+        .ArticleList__row .ArticleList__rowCell.articleList__rowCell-content h3 .path-secondary {
+          line-height: 1.33;
+          font-size: 1.6rem;
+          font-family: lota_grotesque_alt_1exLt, "Helvetica Neue", Helvetica, sans-serif;
+          font-weight: 100;
+          text-transform: uppercase;
+          font-weight: 400;
+          font-size: 1.333rem;
+          line-height: 1.33;
+          color: #005766;
+          text-decoration: none !important; }
+          @media screen and (max-width: 900px) {
+            .ArticleList__row .ArticleList__rowCell.articleList__rowCell-content h3 .path-secondary {
+              font-size: 1.28rem; } }
+          @media screen and (max-width: 900px) {
+            .ArticleList__row .ArticleList__rowCell.articleList__rowCell-content h3 .path-secondary {
+              font-size: 1.0664rem; } }
       .ArticleList__row .ArticleList__rowCell.articleList__rowCell-content p {
         margin: 0;
+        padding-left: 2rem;
         font-size: 1.13305rem;
         line-height: 1.33;
         color: rgba(0, 87, 102, 0.8);
@@ -166,7 +186,7 @@ h1, h2, h3, h4, h5, h6 {
       @media screen and (min-width: 1200px) {
         .ArticleList__row .ArticleList__rowCell.ArticleList__rowCell-date:not(.ArticleList__rowCell-sort) .ArticleList__rowCellInner.ArticleList__rowCellInner-date {
           line-height: 1.33;
-          font-size: 2.4rem;
+          font-size: 1.6rem;
           font-family: lota_grotesque_alt_1exLt, "Helvetica Neue", Helvetica, sans-serif;
           font-weight: 100;
           text-transform: uppercase;
@@ -175,7 +195,10 @@ h1, h2, h3, h4, h5, h6 {
           text-transform: none; } }
   @media screen and (min-width: 1200px) and (max-width: 900px) {
     .ArticleList__row .ArticleList__rowCell.ArticleList__rowCell-date:not(.ArticleList__rowCell-sort) .ArticleList__rowCellInner.ArticleList__rowCellInner-date {
-      font-size: 1.92rem; } }
+      font-size: 1.28rem; } }
   @media screen and (min-width: 1200px) and (max-width: 900px) {
     .ArticleList__row .ArticleList__rowCell.ArticleList__rowCell-date:not(.ArticleList__rowCell-sort) .ArticleList__rowCellInner.ArticleList__rowCellInner-date {
       font-size: 1.60581rem; } }
+  .ArticleList__row.ArticleList__row-last {
+    flex-grow: 1;
+    height: 100%; }

@@ -161,7 +161,7 @@ export default class ArticleList extends React.Component {
           </div>
           <div className="ArticleList__rowCell articleList__rowCell-content" onClick={() => Actions.goArticle(article.path)}>
             <div className="ArticleList__rowCellInner">
-              <h3>{article.title}</h3>
+              <h3><span className="path-secondary">{pathToInitial(article.directory, true)}</span>: {article.title}</h3>
               <p>{article.description || ''} <span
                 className="ArticleList__dateInline">  {articleDate(article.file_revised)}</span></p>
             </div>
@@ -174,6 +174,15 @@ export default class ArticleList extends React.Component {
         </div>
       ))
       }
+
+      <div className="ArticleList__row ArticleList__row-last">
+        <div className="ArticleList__rowCell ArticleList__rowCell-path dark">
+          <div className="ArticleList__rowCellPathInner ArticleList__rowCellPathInner-path">&nbsp;</div>
+        </div>
+        <div className="ArticleList__rowCell articleList__rowCell-content">
+        &nbsp;
+        </div>
+      </div>
     </div>
   }
 }

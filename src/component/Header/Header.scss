@@ -5,7 +5,7 @@
   width: 100%;
   flex-direction: row-reverse;
   .HeaderDirNav__item {
-    @include bodyFont(1);
+    @include bodyFont(0.8);
     font-family: lota_grotesque_alt_1thin, 'Helvetica Neue', Helvetica, sans-serif;
     font-weight: 200;
     text-transform: uppercase;

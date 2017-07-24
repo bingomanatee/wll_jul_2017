@@ -15,7 +15,7 @@ $headerFont: lota_grotesque_alt_1exLt, 'Helvetica Neue', Helvetica, sans-serif;
 $contentHeaderFont: lota_grotesque_alt_1black, 'Helvetica Neue', Helvetica, sans-serif;
 $subHeaderFontFamily: lota_grotesque_alt_1semibold, 'Helvetica Neue', Helvetica, sans-serif;
 
-$largeFontSize: 3rem;
+$largeFontSize: 2rem;
 $bodyFontSize: 1.333rem;
 $mediumScaledown: 0.8;
 $baseFontSize: 16px;
@@ -80,25 +80,25 @@ $suffixColor: transparentize($lightColor, 0.5);
 
 .ifSmall {
   @media screen and (min-width: $responsiveMedium) {
-    display: none;
+    display: none !important;
   }
 }
 
 .ifNotSmall {
   @media screen and (max-width: $responsiveMedium) {
-    display: none;
+    display: none !important;
   }
 }
 
 .ifMedium {
   @media screen and (min-width: $responsiveLarge) {
-    display: none;
+    display: none !important;
   }
 }
 
 .ifNotMedium {
   @media screen and (max-width: $responsiveLarge) {
-    display: none;
+    display: none !important;
   }
 }
 

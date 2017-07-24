@@ -1,19 +1,19 @@
 @charset "UTF-8";
 @media screen and (min-width: 900px) {
   .ifSmall {
-    display: none; } }
+    display: none !important; } }
 
 @media screen and (max-width: 900px) {
   .ifNotSmall {
-    display: none; } }
+    display: none !important; } }
 
 @media screen and (min-width: 1200px) {
   .ifMedium {
-    display: none; } }
+    display: none !important; } }
 
 @media screen and (max-width: 1200px) {
   .ifNotMedium {
-    display: none; } }
+    display: none !important; } }
 
 h1, h2, h3, h4, h5, h6 {
   margin: 0;
@@ -23,11 +23,11 @@ h1, h2, h3, h4, h5, h6 {
   padding-top: 1rem;
   font-family: lota_grotesque_alt_1black, "Helvetica Neue", Helvetica, sans-serif;
   line-height: 1.33;
-  font-size: 3rem;
+  font-size: 2rem;
   text-transform: none; }
   @media screen and (max-width: 900px) {
     .pageHeader {
-      font-size: 2.4rem; } }
+      font-size: 1.6rem; } }
 
 .pathSuffix {
   color: rgba(254, 251, 210, 0.5);
@@ -51,7 +51,7 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
   flex-direction: row-reverse; }
   .HeaderDirNav .HeaderDirNav__item {
-    font-size: 1.333rem;
+    font-size: 1.0664rem;
     line-height: 1.33;
     font-family: lota_grotesque_alt_1thin, 'Helvetica Neue', Helvetica, sans-serif;
     font-weight: 200;
@@ -59,7 +59,7 @@ h1, h2, h3, h4, h5, h6 {
     padding: 0.25rem 1rem; }
     @media screen and (max-width: 900px) {
       .HeaderDirNav .HeaderDirNav__item {
-        font-size: 1.0664rem; } }
+        font-size: 0.85312rem; } }
     .HeaderDirNav .HeaderDirNav__item:hover {
       background-color: #00414d;
       color: #fbf056; }
@@ -80,7 +80,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 0.5rem;
   padding: 0.5rem;
   line-height: 1.33;
-  font-size: 1.998rem;
+  font-size: 1.332rem;
   font-family: lota_grotesque_alt_1exLt, "Helvetica Neue", Helvetica, sans-serif;
   font-weight: 100;
   text-transform: uppercase;
@@ -88,7 +88,7 @@ h1, h2, h3, h4, h5, h6 {
   text-align: center; }
   @media screen and (max-width: 900px) {
     .HeaderDirNav__close {
-      font-size: 1.5984rem; } }
+      font-size: 1.0656rem; } }
   .HeaderDirNav__close:hover {
     background-color: #00414d;
     color: #fbf056; }
@@ -112,7 +112,7 @@ h1, h2, h3, h4, h5, h6 {
       overflow: hidden;
       white-space: nowrap;
       line-height: 1.33;
-      font-size: 3rem;
+      font-size: 2rem;
       font-family: lota_grotesque_alt_1exLt, "Helvetica Neue", Helvetica, sans-serif;
       font-weight: 100;
       text-transform: uppercase;
@@ -126,7 +126,7 @@ h1, h2, h3, h4, h5, h6 {
       align-content: center; }
       @media screen and (max-width: 900px) {
         .Header .Header__title h1.Header__titleInner {
-          font-size: 2.4rem; } }
+          font-size: 1.6rem; } }
       .Header .Header__title h1.Header__titleInner .Header__homeLink {
         padding-right: 1rem; }
       .Header .Header__title h1.Header__titleInner .Header__hamburger {
