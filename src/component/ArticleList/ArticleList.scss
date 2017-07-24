@@ -61,7 +61,7 @@ $articleBFscale: 0.85;
 
     &.ArticleList__rowCell-path {
       @include leftMargin();
-      padding-right: 0.5rem;
+      padding-right: 0;
       .ArticleList__rowCellInner.ArticleList__rowCellInner-path {
         width: 100%;
         display: flex;
@@ -70,7 +70,8 @@ $articleBFscale: 0.85;
         align-items: flex-start;
         @include headerStyle(0.8);
         @include bodyFont(2 * $articleBFscale * $bodyLineHeight);
-        line-height: 1 !important;
+        line-height: 1;
+        padding-right: 0;
         @media screen and (max-width: $responsiveLarge) {
           @include bodyFont(1);
         }

@@ -88,7 +88,7 @@ h1, h2, h3, h4, h5, h6 {
       justify-content: center; }
     .ArticleList__row .ArticleList__rowCell.ArticleList__rowCell-path {
       width: 8rem;
-      padding-right: 0.5rem; }
+      padding-right: 0; }
       @media screen and (max-width: 1200px) {
         .ArticleList__row .ArticleList__rowCell.ArticleList__rowCell-path {
           width: 4rem; } }
@@ -105,7 +105,8 @@ h1, h2, h3, h4, h5, h6 {
         text-transform: uppercase;
         font-size: 3.01391rem;
         line-height: 1.33;
-        line-height: 1 !important; }
+        line-height: 1;
+        padding-right: 0; }
         @media screen and (max-width: 900px) {
           .ArticleList__row .ArticleList__rowCell.ArticleList__rowCell-path .ArticleList__rowCellInner.ArticleList__rowCellInner-path {
             font-size: 1.28rem; } }
