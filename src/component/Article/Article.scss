@@ -65,12 +65,13 @@
       flex-shrink: 0;
       flex-grow: 0.25;
       text-align: right;
-      padding-right: 1rem;
+        margin-right: 1rem;
     }
       @media screen and (max-width: $responsiveMedium) {
-       @include contentHeaderStyle();
+        &.ArticleTitle__rowCell-directory {
+          @include contentHeaderStyle();
+        }
         color: $darkColor;
-        margin-right: 1rem;
         text-transform: Uppercase;
         &:after {
           content: ': ';

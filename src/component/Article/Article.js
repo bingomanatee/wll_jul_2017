@@ -13,7 +13,7 @@ export default  (props) => {
         <article>
           <div className="ArticleTitle">
             <div className="ArticleTitle__row ArticleTitle__row-top">
-              <div className="ArticleTitle__rowCell ArticleTitle__rowCell-head">
+              <div className="ArticleTitle__rowCell ArticleTitle__rowCell-head ArticleTitle__rowCell-directory">
                 {pathToDirectory(props.article.directory)}
               </div>
               <div className="ArticleTitle__rowCell">
@@ -21,7 +21,7 @@ export default  (props) => {
               </div>
             </div>
             <div className="ArticleTitle__row">
-              <div className="ArticleTitle__rowCell ArticleTitle__rowCell-head">{articleDate(props.article) }
+              <div className="ArticleTitle__rowCell ArticleTitle__rowCell-head ArticleTitle__rowCell-date">{articleDate(props.article) }
               </div>
               <div className="ArticleTitle__rowCell ArticleTitle__rowCell-description">
                 {props.article.description}
