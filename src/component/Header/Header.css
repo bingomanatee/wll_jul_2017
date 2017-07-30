@@ -64,8 +64,8 @@ h1, h2, h3, h4, h5, h6 {
       .HeaderDirNav .HeaderDirNav__item {
         font-size: 1.22636rem; } }
     .HeaderDirNav .HeaderDirNav__item:hover {
-      background-color: #00414d;
-      color: #fff785; }
+      background-color: #00343d;
+      color: #fff238; }
     .HeaderDirNav .HeaderDirNav__item.HeaderDirNav__item-active {
       color: #005766 !important;
       background-color: #fefbd2; }
@@ -93,8 +93,8 @@ h1, h2, h3, h4, h5, h6 {
     .HeaderDirNav__close {
       font-size: 1.0656rem; } }
   .HeaderDirNav__close:hover {
-    background-color: #00414d;
-    color: #fff785; }
+    background-color: #00343d;
+    color: #fff238; }
 
 .Header {
   flex-grow: 0;

@@ -60,11 +60,12 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 1rem !important;
   line-height: 100% !important; }
   .ArticleList__row.ArticleList___row-article:hover .ArticleList__rowCell {
-    background-color: #fff785; }
+    background-color: #fff238; }
     .ArticleList__row.ArticleList___row-article:hover .ArticleList__rowCell h3 {
       text-decoration: underline; }
     .ArticleList__row.ArticleList___row-article:hover .ArticleList__rowCell.dark {
-      background-color: #00414d; }
+      background-color: #00343d;
+      color: #fff238; }
   .ArticleList__row.articleList__row-sort {
     border-bottom: 1px solid #a6d2a2; }
     .ArticleList__row.articleList__row-sort .ArticleList__rowCell {

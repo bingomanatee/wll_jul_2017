@@ -1,11 +1,11 @@
 $secondaryColor: hsl(115, 35%, 73%);
 $darkColor: hsl(189, 100%, 20%);
 $darkColorText: darken($darkColor, 8%);
-$darkColorHover: darken($darkColor, 5%);
+$darkColorHover: darken($darkColor, 8%);
 $navColorOnDark: hsl(0, 0%, 100%);
 $navColorOnLight: hsl(240, 100%, 50%);
 $lightColor: hsl(56, 95%, 91%);
-$lightColorHover: saturate(darken($lightColor, 15%), 5%);
+$lightColorHover: saturate(darken($lightColor, 30%), 5%);
 $subFontColor: transparentize($darkColor, 0.2);
 $pathWidthSmall: 4rem;
 $pathWidth: 8rem;

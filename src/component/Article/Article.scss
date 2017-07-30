@@ -35,6 +35,15 @@
 
 .ArticleTitle {
   .ArticleTitle__row {
+    @media screen and (max-width: $responsiveMedium) {
+      display: block;
+      .ArticleTitle__rowCell {
+        h1 {
+          display: inline;
+        }
+        display: inline;
+      }
+    }
     display: flex;
     width: 100%;
     flex-direction: row;
@@ -50,12 +59,23 @@
       color: $darkColor;
     }
     .ArticleTitle__rowCell-head {
+      @media screen and (min-width: $responsiveMedium) {
       @include headerStyle(1.33);
       flex-basis: 18rem;
       flex-shrink: 0;
       flex-grow: 0.25;
       text-align: right;
       padding-right: 1rem;
+    }
+      @media screen and (max-width: $responsiveMedium) {
+       @include contentHeaderStyle();
+        color: $darkColor;
+        margin-right: 1rem;
+        text-transform: Uppercase;
+        &:after {
+          content: ': ';
+        }
+      }
     }
   }
 }

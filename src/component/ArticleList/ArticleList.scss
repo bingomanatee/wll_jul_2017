@@ -24,6 +24,7 @@ $articleBFscale: 0.85;
       }
       &.dark {
         background-color: $darkColorHover;
+        color: $lightColorHover;
       }
     }
     @media screen and (max-width: $responsiveLarge) {
