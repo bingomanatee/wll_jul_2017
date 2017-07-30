@@ -60,9 +60,12 @@ h1, h2, h3, h4, h5, h6 {
     @media screen and (max-width: 900px) {
       .HeaderDirNav .HeaderDirNav__item {
         font-size: 0.85312rem; } }
+    @media screen and (min-width: 1200px) {
+      .HeaderDirNav .HeaderDirNav__item {
+        font-size: 1.22636rem; } }
     .HeaderDirNav .HeaderDirNav__item:hover {
       background-color: #00414d;
-      color: #fbf056; }
+      color: #fff785; }
     .HeaderDirNav .HeaderDirNav__item.HeaderDirNav__item-active {
       color: #005766 !important;
       background-color: #fefbd2; }
@@ -91,7 +94,7 @@ h1, h2, h3, h4, h5, h6 {
       font-size: 1.0656rem; } }
   .HeaderDirNav__close:hover {
     background-color: #00414d;
-    color: #fbf056; }
+    color: #fff785; }
 
 .Header {
   flex-grow: 0;

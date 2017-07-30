@@ -60,7 +60,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 1rem !important;
   line-height: 100% !important; }
   .ArticleList__row.ArticleList___row-article:hover .ArticleList__rowCell {
-    background-color: #fbf056; }
+    background-color: #fff785; }
     .ArticleList__row.ArticleList___row-article:hover .ArticleList__rowCell h3 {
       text-decoration: underline; }
     .ArticleList__row.ArticleList___row-article:hover .ArticleList__rowCell.dark {
@@ -113,6 +113,9 @@ h1, h2, h3, h4, h5, h6 {
         @media screen and (max-width: 900px) {
           .ArticleList__row .ArticleList__rowCell.ArticleList__rowCell-path .ArticleList__rowCellInner.ArticleList__rowCellInner-path {
             font-size: 2.41113rem; } }
+        @media screen and (min-width: 1200px) {
+          .ArticleList__row .ArticleList__rowCell.ArticleList__rowCell-path .ArticleList__rowCellInner.ArticleList__rowCellInner-path {
+            font-size: 3.466rem; } }
         @media screen and (max-width: 900px) {
           .ArticleList__row .ArticleList__rowCell.ArticleList__rowCell-path .ArticleList__rowCellInner.ArticleList__rowCellInner-path {
             font-size: 1.333rem;
@@ -120,6 +123,9 @@ h1, h2, h3, h4, h5, h6 {
   @media screen and (max-width: 900px) and (max-width: 900px) {
     .ArticleList__row .ArticleList__rowCell.ArticleList__rowCell-path .ArticleList__rowCellInner.ArticleList__rowCellInner-path {
       font-size: 1.0664rem; } }
+  @media screen and (max-width: 900px) and (min-width: 1200px) {
+    .ArticleList__row .ArticleList__rowCell.ArticleList__rowCell-path .ArticleList__rowCellInner.ArticleList__rowCellInner-path {
+      font-size: 1.53295rem; } }
     .ArticleList__row .ArticleList__rowCell.articleList__rowCell-content {
       flex-grow: 1;
       flex-shrink: 1;
@@ -133,6 +139,9 @@ h1, h2, h3, h4, h5, h6 {
         @media screen and (max-width: 900px) {
           .ArticleList__row .ArticleList__rowCell.articleList__rowCell-content h3 {
             font-size: 1.0664rem; } }
+        @media screen and (min-width: 1200px) {
+          .ArticleList__row .ArticleList__rowCell.articleList__rowCell-content h3 {
+            font-size: 1.53295rem; } }
         .ArticleList__row .ArticleList__rowCell.articleList__rowCell-content h3 .path-secondary {
           line-height: 1.33;
           font-size: 1.6rem;
@@ -150,6 +159,9 @@ h1, h2, h3, h4, h5, h6 {
           @media screen and (max-width: 900px) {
             .ArticleList__row .ArticleList__rowCell.articleList__rowCell-content h3 .path-secondary {
               font-size: 1.0664rem; } }
+          @media screen and (min-width: 1200px) {
+            .ArticleList__row .ArticleList__rowCell.articleList__rowCell-content h3 .path-secondary {
+              font-size: 1.53295rem; } }
       .ArticleList__row .ArticleList__rowCell.articleList__rowCell-content p {
         margin: 0;
         padding-left: 2rem;
@@ -162,13 +174,16 @@ h1, h2, h3, h4, h5, h6 {
         @media screen and (max-width: 900px) {
           .ArticleList__row .ArticleList__rowCell.articleList__rowCell-content p {
             font-size: 0.90644rem; } }
+        @media screen and (min-width: 1200px) {
+          .ArticleList__row .ArticleList__rowCell.articleList__rowCell-content p {
+            font-size: 1.30301rem; } }
         .ArticleList__row .ArticleList__rowCell.articleList__rowCell-content p .ArticleList__dateInline {
           color: #00343d; }
           @media screen and (min-width: 1200px) {
             .ArticleList__row .ArticleList__rowCell.articleList__rowCell-content p .ArticleList__dateInline {
               display: none; } }
     .ArticleList__row .ArticleList__rowCell .ArticleList__dateInline {
-      display: block;
+      display: inline-block;
       margin-left: 1rem;
       white-space: nowrap; }
       @media screen and (min-width: 900px) {
@@ -200,6 +215,9 @@ h1, h2, h3, h4, h5, h6 {
   @media screen and (min-width: 1200px) and (max-width: 900px) {
     .ArticleList__row .ArticleList__rowCell.ArticleList__rowCell-date:not(.ArticleList__rowCell-sort) .ArticleList__rowCellInner.ArticleList__rowCellInner-date {
       font-size: 1.60581rem; } }
+  @media screen and (min-width: 1200px) and (min-width: 1200px) {
+    .ArticleList__row .ArticleList__rowCell.ArticleList__rowCell-date:not(.ArticleList__rowCell-sort) .ArticleList__rowCellInner.ArticleList__rowCellInner-date {
+      font-size: 2.30836rem; } }
   .ArticleList__row.ArticleList__row-last {
     flex-grow: 1;
     height: 100%; }

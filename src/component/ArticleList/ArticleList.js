@@ -1,7 +1,7 @@
 import React from 'react';
 import './ArticleList.css';
 import SortIcon from './../../component/SortIcon/SortIcon';
-import moment from 'moment';
+import articleDate from './../../utils/articleDate';
 import _ from 'lodash';
 import pathToInitial from '../../utils/pathToInitial';
 import {Actions} from 'jumpsuit';
@@ -22,14 +22,6 @@ const dateToTime = _.memoize((dateString) => {
   }
   return Date.parse(dateString);
 });
-
-const articleDate = (date) => {
-  let articleDate = moment(date);
-  if (!articleDate.isValid) {
-    return '??';
-  }
-  return articleDate.format('MMM D YY');
-}
 
 export default class ArticleList extends React.Component {
   constructor (props) {
@@ -163,12 +155,12 @@ export default class ArticleList extends React.Component {
             <div className="ArticleList__rowCellInner">
               <h3><span className="path-secondary">{pathToInitial(article.directory, true)}</span>: {article.title}</h3>
               <p>{article.description || ''} <span
-                className="ArticleList__dateInline">  {articleDate(article.file_revised)}</span></p>
+                className="ArticleList__dateInline">{articleDate(article)}</span></p>
             </div>
           </div>
           <div className="ArticleList__rowCell ArticleList__rowCell-date">
             <div className="ArticleList__rowCellInner ArticleList__rowCellInner-date">
-              {articleDate(article.file_revised)}
+              {articleDate(article)}
             </div>
           </div>
         </div>

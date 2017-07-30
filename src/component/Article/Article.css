@@ -59,26 +59,59 @@ h1, h2, h3, h4, h5, h6 {
       .Article .Article__frame {
         padding: 1rem; } }
     .Article .Article__frame article {
-      font-size: 1.4663rem;
+      font-size: 1.333rem;
       line-height: 1.33;
       max-width: 1200px; }
       @media screen and (max-width: 900px) {
         .Article .Article__frame article {
-          font-size: 1.17304rem; } }
+          font-size: 1.0664rem; } }
+      @media screen and (min-width: 1200px) {
+        .Article .Article__frame article {
+          font-size: 1.53295rem; } }
       .Article .Article__frame article pre {
         padding: 1rem;
         max-width: 100vw;
         display: block;
         overflow-x: auto;
         background-color: white;
-        border-top: 2px solid #fbf056;
-        border-bottom: 2px solid #fbf056;
+        border-top: 2px solid #fff785;
+        border-bottom: 2px solid #fff785;
         font-size: 1.0664rem;
         line-height: 1.33; }
         @media screen and (max-width: 900px) {
           .Article .Article__frame article pre {
             font-size: 0.85312rem; } }
+        @media screen and (min-width: 1200px) {
+          .Article .Article__frame article pre {
+            font-size: 1.22636rem; } }
         @media screen and (max-width: 900px) {
           .Article .Article__frame article pre {
             padding: 0.5rem;
             white-space: pre-line; } }
+
+.ArticleTitle .ArticleTitle__row {
+  display: flex;
+  width: 100%;
+  flex-direction: row; }
+  .ArticleTitle .ArticleTitle__row .ArticleTitle__rowCell {
+    flex-grow: 100; }
+  .ArticleTitle .ArticleTitle__row.ArticleTitle__row-top {
+    align-items: flex-end;
+    border-bottom: 1px solid #005766;
+    margin-bottom: 0.5rem; }
+  .ArticleTitle .ArticleTitle__row .ArticleTitle__rowCell-description {
+    color: #005766; }
+  .ArticleTitle .ArticleTitle__row .ArticleTitle__rowCell-head {
+    line-height: 1.33;
+    font-size: 2.66rem;
+    font-family: lota_grotesque_alt_1exLt, "Helvetica Neue", Helvetica, sans-serif;
+    font-weight: 100;
+    text-transform: uppercase;
+    flex-basis: 18rem;
+    flex-shrink: 0;
+    flex-grow: 0.25;
+    text-align: right;
+    padding-right: 1rem; }
+    @media screen and (max-width: 900px) {
+      .ArticleTitle .ArticleTitle__row .ArticleTitle__rowCell-head {
+        font-size: 2.128rem; } }

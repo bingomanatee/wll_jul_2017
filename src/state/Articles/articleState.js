@@ -4,7 +4,9 @@ import {Hook, State, Actions, Effect} from 'jumpsuit'
 import _ from 'lodash';
 import cleanDirectory from './../../utils/cleanDirectory';
 
-const URI_ROOT = 'http://wonderlandlabs.com';
+const URI_ROOT = 'http://wonderlandlabs.com/api';
+
+// const URI_ROOT = 'http://localhost:3000/api';
 
 export default State({
   // Initial State

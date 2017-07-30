@@ -24,14 +24,10 @@ body {
 
 html {
   height: 100%;
-  font-size: $baseFontSize;
+  font-size: $baseFontSize * $mediumScaledown;
   background-color: $lightColor;
 
   @media screen and (min-width: $responsiveMedium) {
-    font-size: $largeFontSize;
-  }
-
-  @media screen and (min-width: $responsiveLarge) {
-    font-size: $veryLargeFontSize;
+    font-size: $baseFontSize;
   }
 }

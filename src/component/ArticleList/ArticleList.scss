@@ -111,7 +111,7 @@ $articleBFscale: 0.85;
     }
 
     .ArticleList__dateInline {
-      display: block;
+      display: inline-block;
       margin-left: 1rem;
       white-space: nowrap;
       @media screen and (min-width: $responsiveMedium) {
