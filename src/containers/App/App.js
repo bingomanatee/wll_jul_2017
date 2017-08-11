@@ -9,6 +9,7 @@ export default Component({
         Actions.initAuth();
         if (!this.props.articlesLoaded) {
           Actions.getArticles();
+          Actions.getDirectories();
         }
     },
 

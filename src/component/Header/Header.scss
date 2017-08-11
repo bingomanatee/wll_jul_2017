@@ -64,6 +64,10 @@
       .Header__homeLink {
         padding-right: 1rem;
       }
+      .Header__authLink {
+        margin-right: 1rem;
+        text-transform: none;
+      }
       .Header__hamburger {
         @include leftMargin();
         padding-left: 0.25rem;

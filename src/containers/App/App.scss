@@ -1,5 +1,32 @@
 @import './../../style/styles';
 
+@import './../../style/pure-release-1.0.0/base-min';
+@import './../../style/pure-release-1.0.0/tables-min';
+@import './../../style/pure-release-1.0.0/buttons-min';
+@import './../../style/pure-release-1.0.0/forms-min';
+
+.edit-field {
+  width: 40rem;
+}
+
+table {
+  background-color: white;
+  .table-cell-bin {
+    width: 10rem;
+  }
+  .table-cell-button {
+    width: 15rem;
+  }
+}
+
+.form-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+}
+
+
 .App {
   display: flex;
   flex-direction: column;

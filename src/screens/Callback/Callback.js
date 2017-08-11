@@ -12,7 +12,7 @@ export default class Home extends React.Component {
         return (
             <div className='Callback'>
                 <p>
-                    Where you end up after you log on
+                    Logging In....
                 </p>
                 <Link to='/'>Go To Home</Link>
             </div>

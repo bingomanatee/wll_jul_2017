@@ -3,7 +3,7 @@ import {Hook, Goto, State, Actions, Effect} from 'jumpsuit';
 import _ from 'lodash';
 import cleanDirectory from './../../utils/cleanDirectory';
 
-export default State({
+const navState = State('navState', {
   // Initial State
   initial: {showNav: false, currentDir: false, currentArticlePath: false},
   // Actions
@@ -37,17 +37,35 @@ export default State({
   }
 });
 
+export default navState;
+
+Effect('goCategories', () => {
+  navState.setCurrentDir(false);
+  Goto({path: '/admin/categories/'});
+});
+
+Effect('goEditCategory', (directory) => {
+  navState.setCurrentDir(cleanDirectory(directory));
+  Goto({path: '/admin/categories/' + encodeURIComponent(directory) + '/edit'});
+});
+
 Effect('goDirectory', (directory) => {
-  Actions.setCurrentDir(directory);
+  navState.setCurrentDir(directory);
   Goto({path: '/directory/' + directory});
 });
 
 Effect('goArticle', (currentArticlePath) => {
-  Actions.setCurrentArticlePath(currentArticlePath);
+  navState.setCurrentDir(currentArticlePath);
   Actions.getArticle(currentArticlePath);
   Goto({path: '/article/' + encodeURIComponent(cleanDirectory(currentArticlePath))});
 });
 
 Effect('goHome', () => {
+  navState.setCurrentDir(false);
   Goto({path: '/', hash: null, query: null});
-})
+});
+
+Effect('goAdmin', () => {
+  navState.setCurrentDir(false);
+  Goto({path: '/admin', hash: null, query: null});
+});

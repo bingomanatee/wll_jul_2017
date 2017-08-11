@@ -12,6 +12,9 @@ import Counter from './screens/Counter';
 import Callback from './screens/Callback/Callback';
 import Directory from './containers/Directory/Directory';
 import Article from './containers/Article/Article';
+import Admin from './containers/Admin/Admin';
+import Categories from './containers/Categories/Categories';
+import CategoryEdit from './containers/CategoryEdit/CategoryEdit';
 
 // Simple Routing
 Render(states, (
@@ -22,6 +25,9 @@ Render(states, (
      <Route path="callback" component={Callback} />
       <Route path="directory/:directory" component={Directory} />
       <Route path="article/:currentArticlePath" component={Article} />
+      <Route path="admin" component={Admin} />
+      <Route path="admin/categories" component={Categories} />
+      <Route path="admin/categories/:directory/edit" component={CategoryEdit} />
     </Route>
   </Router>
 ));

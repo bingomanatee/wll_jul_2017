@@ -32,7 +32,6 @@ export default class ArticleList extends React.Component {
   }
 
   advanceSort (column, next) {
-    console.log('advance: ', column, next);
     if (column !== this.state.sortColumn) {
       // initialize with default sort column
       this.setState({

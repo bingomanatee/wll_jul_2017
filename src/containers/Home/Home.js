@@ -8,10 +8,9 @@ export default Component(
       if (!this.props.homepageArticlesLoaded) {
         Actions.getHomepageArticles();
       }
-      Actions.setCurrentDir(null);
+      Actions.navState.setCurrentDir(null);
     },
     render () {
-      console.log('rendering home with props:', this.props);
       const homepageArticles = this.props.homepageArticles || [];
       return <ArticleList title="Top Stories" articles={homepageArticles}/>
     }

@@ -10,19 +10,16 @@ export default Component(
       }
     },
     render () {
-      console.log('header dirs: ', this.props.directories);
-      return <Header className="dark" location={this.props.location} currentDir={this.props.currentDir}
+      return <Header className="dark" authlevel={this.props.authLevel} location={this.props.location} currentDir={this.props.currentDir}
                      showNav={this.props.showNav} directories={this.props.directories} auth={this.props.auth}/>;
     }
   },
-  (state) => {
-    console.log('state: ', state);
-    return {
-      directories: state.articleState.directories,
-      articlesLoaded: state.articleState.articlesLoaded,
-      location: state.routing.locationBeforeTransitions.pathname,
-      currentDir: state.navState.currentDir,
-      showNav: state.navState.showNav
-    }
-  }
+  (state) => ({
+    directories: state.articleState.directories,
+    articlesLoaded: state.articleState.articlesLoaded,
+    location: state.routing.locationBeforeTransitions.pathname,
+    currentDir: state.navState.currentDir,
+    showNav: state.navState.showNav,
+    authLevel: state.authState.authLevel
+  })
 )

@@ -54,7 +54,7 @@ export default class Auth {
         localStorage.removeItem('id_token');
         localStorage.removeItem('expires_at');
         // navigate to the home route
-        Actions.resetUser();
+        Actions.authState.resetUser();
         Actions.goHome();
     }
 
@@ -75,9 +75,9 @@ export default class Auth {
 
         this.auth0.client.userInfo(this.accessToken, (err, user) => {
             if (user) {
-                Actions.setUser(user);
+                Actions.authState.setUser(user);
             } else {
-                Actions.resetUser();
+                Actions.authState.resetUser();
             }
         });
     }

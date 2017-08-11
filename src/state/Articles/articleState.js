@@ -4,9 +4,7 @@ import {Hook, State, Actions, Effect} from 'jumpsuit'
 import _ from 'lodash';
 import cleanDirectory from './../../utils/cleanDirectory';
 
-const URI_ROOT = 'http://wonderlandlabs.com/api';
-
-// const URI_ROOT = 'http://localhost:3000/api';
+import {URI_ROOT} from './../../config';
 
 export default State({
   // Initial State
@@ -49,7 +47,6 @@ Effect('getHomepageArticles', () => {
   fetch(`${URI_ROOT}/homepage-articles`)
     .then((res) => res.json())
     .then((articles) => {
-        console.log('homepage articles:', articles);
         Actions.setHomepageArticles(articles);
       }
     ).catch((err) => {
@@ -61,7 +58,6 @@ Effect('getArticle', (path) => {
   fetch(`${URI_ROOT}/article/articles/${cleanDirectory(path)}`)
     .then((res) => res.json())
     .then((article) => {
-        console.log('article:', article);
         Actions.setArticle(article);
       }
     ).catch((err) => {
@@ -73,7 +69,6 @@ Effect('getArticles', () => {
   fetch(`${URI_ROOT}/article`)
     .then((res) => res.json())
     .then((articles) => {
-        console.log('articles:', articles);
         Actions.setArticles(articles);
       }
     ).catch((err) => {
@@ -81,9 +76,20 @@ Effect('getArticles', () => {
   })
 });
 
+Effect('getDirectories', () => {
+  fetch(`${URI_ROOT}/categories`)
+    .then((res) => res.json())
+    .then((dirs) => {
+        Actions.setDirectories(dirs);
+      }
+    ).catch((err) => {
+    console.log('cannot get dirs: ', err);
+  })
+});
+
+/*
 Hook((action) => {
   if (action.type === 'setArticles') {
-    console.log('setting directories');
     const directories = _(action.payload)
       .map('directory')
       .map(cleanDirectory)
@@ -92,4 +98,4 @@ Hook((action) => {
       .value();
     Actions.setDirectories(directories);
   }
-});
+}); */

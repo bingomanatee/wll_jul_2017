@@ -9,12 +9,16 @@ import './User.css';
 export default Component({
     render() {
       const identity = this.props.identity;
+      const authLevel = this.props.authLevel;
+
       return (
         <div className="User">
           {
             this.props.loggedIn && (
-              <div className="User__row"> <div className="User__label ifNotSmall">{identity.name}</div>
-                <div onClick={() => Actions.logout()} className="User__label link"><span className="logoutX">X</span><span className="ifNotSmall">Log Out</span></div>
+              <div className="User__row">
+                <div className="User__label ifNotSmall">{identity.name} ({authLevel})</div>
+                <div onClick={() => Actions.logout()} className="User__label link"><span className="logoutX">X</span><span
+                  className="ifNotSmall">Log Out</span></div>
                 <img src={userIcon} className="ifNotSmall"/>
                 <img src={userIconSm} className="ifSmall"/>
               </div>
@@ -23,8 +27,8 @@ export default Component({
           {
             !this.props.loggedIn && (
               <div className="User__row"
-                 style={{cursor: 'pointer'}}
-                 onClick={() => Actions.login()}
+                   style={{cursor: 'pointer'}}
+                   onClick={() => Actions.login()}
               >
                 <div className="User__label link ifNotSmall">Sign In</div>
                 <img src={userIconLoggedOut} className="ifNotSmall"/>
@@ -39,7 +43,8 @@ export default Component({
   (state) => {
     return {
       identity: state.authState.identity,
-      loggedIn: state.authState.loggedIn
+      loggedIn: state.authState.loggedIn,
+      authLevel: state.authState.authLevel
     }
   }
 );

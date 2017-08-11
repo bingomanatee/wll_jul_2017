@@ -16,7 +16,7 @@ export default Component(
   {
     componentDidMount() {
       if (this.props.params && this.props.params.hasOwnProperty('directory')) {
-        Actions.setCurrentDir(this.props.params.directory);
+        Actions.navState.setCurrentDir(this.props.params.directory);
       }
     },
     render () {
