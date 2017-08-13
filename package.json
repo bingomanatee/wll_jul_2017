@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "auth0-js": "^8.7.0",
+    "axios": "^0.16.2",
     "icheck": "^1.0.2",
     "jumpsuit": "^2.1.2",
     "lodash": "^4.17.4",

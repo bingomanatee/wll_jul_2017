@@ -9,7 +9,7 @@ export default Component(
     componentDidMount() {
       if (!this.props.path) {
         let currentArticlePath = decodeURIComponent(this.props.location.replace(/^\/article\//, ''));
-        Actions.setCurrentArticlePath(currentArticlePath);
+        Actions.navState.setCurrentArticlePath(currentArticlePath);
         Actions.getArticle(currentArticlePath);
       }
     },

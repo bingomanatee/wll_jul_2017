@@ -28,7 +28,7 @@ const authState = State('authState', {
   resetUser() {
     if (localStorage) {
       localStorage.removeItem(API_TOKEN);
-      localStorage.removeItem(USER_AUTH_LEVEL)
+      localStorage.removeItem(USER_AUTH_LEVEL);
     }
     return updateState();
   },

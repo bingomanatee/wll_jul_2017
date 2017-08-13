@@ -3,43 +3,82 @@ import fetch from 'node-fetch';
 import {Hook, State, Actions, Effect} from 'jumpsuit'
 import _ from 'lodash';
 import cleanDirectory from './../../utils/cleanDirectory';
-
+import makeAuthHeader from './../../utils/makeAuthHeader';
 import {URI_ROOT} from './../../config';
+import axios from 'axios';
 
-export default State({
+const categoryUrl = (category) => `${URI_ROOT}/categories/${encodeURIComponent(category.directory)}`;
+
+const INITIAL_STATE = {
+  articles: [],
+  directories: [],
+  homepageArticles: [],
+  chapters: [],
+  homepageArticlesLoaded: false,
+  articlesLoaded: false,
+  currentArticle: null
+};
+
+const updateState = (state, update) => {
+  return _.extend({}, INITIAL_STATE, state || {}, update || {});
+}
+export default State('articleState', {
   // Initial State
-  initial: {
-    articles: [],
-    directories: [],
-    homepageArticles: [],
-    chapters: [],
-    homepageArticlesLoaded: false,
-    articlesLoaded: false,
-    currentArticle: null
-  },
+  initial: INITIAL_STATE,
   // Actions
   setHomepageArticles(state, homepageArticles) {
-    let newState = _.cloneDeep(state);
-    newState.homepageArticles = homepageArticles;
-    newState.homepageArticlesLoaded = true;
-    return newState;
+    return updateState(state, {
+      homepageArticles,
+      homepageArticlesLoaded: true
+    });
   },
   setDirectories(state, directories) {
-    let newState = _.cloneDeep(state);
-    newState.directories = directories;
-    return newState;
+    return updateState(state, {directories})
   },
   setArticles(state, articles) {
-    let newState = _.cloneDeep(state);
-    newState.articles = articles;
-    newState.articlesLoaded = true;
-    return newState;
+    return updateState(state, {
+      articles,
+      articlesLoaded: true
+    });
   },
-  setArticle(state, article) {
-    let newState = _.cloneDeep(state);
-    newState.currentArticle =  article;
-    newState.articlesLoaded = true;
+  setArticle(state, currentArticle) {
+    return updateState(state, {currentArticle});
+  },
+  setCategorySequence(state, manifest) {
+    let newState = updateState(state);
+
+    const sequence = manifest.sequence;
+    const category = manifest.category;
+    if (!category) {
+      return state;
+    }
+
+    newState.directories.forEach((currentCategory) => {
+      if (currentCategory.directory === category.directory) {
+        currentCategory.sequence = sequence;
+      }
+    });
+
     return newState;
+  }
+});
+
+Hook((action, getState) => {
+  if (action.type === 'articleState_setCategorySequence') {
+    const category = action.payload.category;
+    axios({
+      method: 'PUT',
+      url: categoryUrl(category) + '/res.json',
+      headers: {
+        'Auth-token': getState().authState.apiToken
+      },
+      data: category
+    })
+      .then((data) => {
+         Actions.getDirectories();
+      }).catch((err) => {
+      console.log('error updating sequence:', err);
+    });
   }
 });
 
@@ -47,7 +86,7 @@ Effect('getHomepageArticles', () => {
   fetch(`${URI_ROOT}/homepage-articles`)
     .then((res) => res.json())
     .then((articles) => {
-        Actions.setHomepageArticles(articles);
+        Actions.articleState.setHomepageArticles(articles);
       }
     ).catch((err) => {
     console.log('cannot get homepage articles: ', err);
@@ -58,7 +97,7 @@ Effect('getArticle', (path) => {
   fetch(`${URI_ROOT}/article/articles/${cleanDirectory(path)}`)
     .then((res) => res.json())
     .then((article) => {
-        Actions.setArticle(article);
+        Actions.articleState.setArticle(article);
       }
     ).catch((err) => {
     console.log('cannot get article: ', path, err);
@@ -69,7 +108,7 @@ Effect('getArticles', () => {
   fetch(`${URI_ROOT}/article`)
     .then((res) => res.json())
     .then((articles) => {
-        Actions.setArticles(articles);
+        Actions.articleState.setArticles(articles);
       }
     ).catch((err) => {
     console.log('cannot get articles: ', err);
@@ -80,22 +119,9 @@ Effect('getDirectories', () => {
   fetch(`${URI_ROOT}/categories`)
     .then((res) => res.json())
     .then((dirs) => {
-        Actions.setDirectories(dirs);
+        Actions.articleState.setDirectories(dirs);
       }
     ).catch((err) => {
     console.log('cannot get dirs: ', err);
   })
 });
-
-/*
-Hook((action) => {
-  if (action.type === 'setArticles') {
-    const directories = _(action.payload)
-      .map('directory')
-      .map(cleanDirectory)
-      .uniq()
-      .sortBy()
-      .value();
-    Actions.setDirectories(directories);
-  }
-}); */

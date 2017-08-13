@@ -2,6 +2,8 @@ import React from 'react';
 import './Categories.css';
 import {Actions} from 'jumpsuit';
 import cleanDirectory from '../../utils/cleanDirectory';
+import _ from 'lodash';
+import ClickEditNumber from '../../containers/ClickEditNumber/ClickEditNumber';
 
 export default  (props) => {
   return (<div className="Admin">
@@ -16,24 +18,25 @@ export default  (props) => {
             <th>
               Path
             </th>
-            <th className="table-cell-bin">Order</th>
+            <th className="table-cell-bin">Sequence</th>
             <th className="table-cell-bin">Published?</th>
             <th className="table-cell-button">&nbsp;</th>
           </tr>
           </thead>
           <tbody>
           {props.directories && (
-            props.directories.map((directory, i) => (  <tr key={`cat-dir-${directory.directory}-${i}`}>
-              <td>{directory.title}</td>
-              <td>{cleanDirectory(directory.directory)}</td>
-              <td className="table-cell-bin">{directory.order}</td>
-              <td className="table-cell-bin">{directory.published ? 'Yes' : 'No'}</td>
+            _(props.directories).sortBy('sequence').map((category, i) => (  <tr key={`cat-dir-${category.directory}-${i}`}>
+              <td>{category.title}</td>
+              <td>{cleanDirectory(category.directory)}</td>
+              <td className="table-cell-bin"><ClickEditNumber value={category.sequence}
+                                                              updateValue={(sequence) => Actions.articleState.setCategorySequence({category, sequence})} /></td>
+              <td className="table-cell-bin">{category.published ? 'Yes' : 'No'}</td>
               <td className="table-cell-button">
-                <button className="pure-button" onClick={() => Actions.goEditCategory(directory.directory)}>
+                <button className="pure-button" onClick={() => Actions.goEditCategory(category.directory)}>
                   Edit
                 </button>
               </td>
-            </tr>))
+            </tr>)).value()
           )}
           </tbody>
         </table>
