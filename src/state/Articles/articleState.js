@@ -6,8 +6,8 @@ import cleanDirectory from './../../utils/cleanDirectory';
 import makeAuthHeader from './../../utils/makeAuthHeader';
 import {URI_ROOT} from './../../config';
 import axios from 'axios';
-
-const categoryUrl = (category) => `${URI_ROOT}/categories/${encodeURIComponent(category.directory)}`;
+import encodePath from '../../utils/encodePath';
+const categoryUrl = (category) => `${URI_ROOT}/categories/${encodePath(category.directory)}`;
 
 const INITIAL_STATE = {
   articles: [],
@@ -75,7 +75,7 @@ Hook((action, getState) => {
       data: category
     })
       .then((data) => {
-         Actions.getDirectories();
+        Actions.getDirectories();
       }).catch((err) => {
       console.log('error updating sequence:', err);
     });
@@ -83,10 +83,9 @@ Hook((action, getState) => {
 });
 
 Effect('getHomepageArticles', () => {
-  fetch(`${URI_ROOT}/homepage-articles`)
-    .then((res) => res.json())
-    .then((articles) => {
-        Actions.articleState.setHomepageArticles(articles);
+  axios.get(`${URI_ROOT}/homepage-articles`)
+    .then((response) => {
+        Actions.articleState.setHomepageArticles(response.data);
       }
     ).catch((err) => {
     console.log('cannot get homepage articles: ', err);
@@ -94,10 +93,13 @@ Effect('getHomepageArticles', () => {
 });
 
 Effect('getArticle', (path) => {
-  fetch(`${URI_ROOT}/article/articles/${cleanDirectory(path)}`)
-    .then((res) => res.json())
+  path = encodePath(path);
+  axios({
+    url: `${URI_ROOT}/articles/${path}.json`,
+    headers: {'Content-Type': ' application/json'}
+  })
     .then((article) => {
-        Actions.articleState.setArticle(article);
+        Actions.articleState.setArticle(article.data);
       }
     ).catch((err) => {
     console.log('cannot get article: ', path, err);
@@ -105,7 +107,7 @@ Effect('getArticle', (path) => {
 });
 
 Effect('getArticles', () => {
-  fetch(`${URI_ROOT}/article`)
+  fetch(`${URI_ROOT}/articles`)
     .then((res) => res.json())
     .then((articles) => {
         Actions.articleState.setArticles(articles);

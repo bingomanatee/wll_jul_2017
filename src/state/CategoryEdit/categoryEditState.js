@@ -25,10 +25,12 @@ const categoryEditState = State('categoryEditState', {
 
 export default categoryEditState;
 
+// setting revision as opposed to initial population
 Effect('updateCategoryEditCategory', (category) => {
   categoryEditState.setCategoryEditCategory(category);
 });
 
+// need hook to get auth header
 Hook((action, getState) => {
   if (action.type === 'updateCategoryEditCategory') {
     const category = action.payload;
@@ -37,6 +39,7 @@ Hook((action, getState) => {
       {method: 'PUT', body: JSON.stringify(category), headers}))
       .then(() => {
         Actions.getDirectories();
+        Actions.goCategories();
       }).catch((err) => {
       console.log('error:', err);
     })

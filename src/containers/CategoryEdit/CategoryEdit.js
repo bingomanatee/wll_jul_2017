@@ -3,6 +3,7 @@ import {Component, Actions} from 'jumpsuit';
 import _ from 'lodash';
 import {Checkbox, Radio} from 'react-icheck';
 import 'icheck/skins/all.css'; // or single skin css
+import articleDate from '../../utils/articleDate';
 
 export default Component(
   {
@@ -50,7 +51,7 @@ export default Component(
       return <div className="Admin">
         <div className="Admin__frame">
           <h1 className="pageHeader"><a onClick={() => Actions.goAdmin()}>Admin</a>:
-            <a onClick={() => Actions.goCategories()}>Categories</a>: Edit Category</h1>
+            <a onClick={() => Actions.goCategories()}>Categories</a>: Edit Category &quot;{this.props.category.directory}&quot;</h1>
           <form className="pure-form pure-form-aligned">
             <fieldset>
               <div className="pure-control-group">
@@ -80,6 +81,27 @@ export default Component(
               </div>
             </fieldset>
           </form>
+          <h2>Articles</h2>
+          <table className="pure-table">
+            <thead>
+            <tr>
+              <th>Title</th>
+              <th className="table-cell-bin">Published?</th>
+              <th className="table-cell-date">Revised</th>
+              <th className="table-cell-button">&nbsp;</th>
+            </tr>
+            </thead>
+            <tbody>
+            {this.props.category.articles && this.props.category.articles.map((article, i) => (
+              <tr key={`article-${article.path}-${i}`}>
+                <td>{article.title}</td>
+                <td className="table-cell-bin">{article.published ? 'Yes' : 'No'}</td>
+                <td className="table-cell-date">{articleDate(article)}</td>
+                <td className="table-cell-button"><button  onClick={() => Actions.goEditArticle(article.path)} className="pure-button">Edit</button></td>
+              </tr>
+            ))}
+            </tbody>
+          </table>
         </div>
       </div>
     }

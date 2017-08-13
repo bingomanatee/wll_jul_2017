@@ -21,7 +21,8 @@ export default Component(
     },
     render () {
       const directory = this.props.directory || '';
-      const articles = _.filter(this.props.articles, (article) => article.published && (directory === cleanDirectory((article.directory))));
+      // todo: replace with axios to get articles from directory
+      const articles = _.filter(this.props.articles, (article) => article.published && (directory === article.directory));
 
       return <ArticleList articles={articles} title={articleListTitle(directory, this.props.location)}/>
     }

@@ -1,7 +1,7 @@
 import React from 'react'
 import {Hook, Goto, State, Actions, Effect} from 'jumpsuit';
 import _ from 'lodash';
-import cleanDirectory from './../../utils/cleanDirectory';
+import encodePath from '../../utils/encodePath';
 
 const navState = State('navState', {
   // Initial State
@@ -25,14 +25,14 @@ const navState = State('navState', {
   setCurrentDir: (state, currentDir) => {
     let newState = _.cloneDeep(state);
     newState.showNav = false;
-    newState.currentDir = cleanDirectory(currentDir);
+    newState.currentDir = currentDir;
     return newState;
   },
   setCurrentArticlePath: (state, currentArticlePath) => {
     let newState = _.cloneDeep(state);
     newState.toggleNav = false;
-    newState.currentArticlePath = cleanDirectory(currentArticlePath);
-    newState.currentDir = newState.currentArticlePath.split('/').pop();
+    newState.currentArticlePath = currentArticlePath;
+    newState.currentDir = currentArticlePath.replace(/\/[^\/]+\.md$/, '');
     return newState;
   }
 });
@@ -45,19 +45,24 @@ Effect('goCategories', () => {
 });
 
 Effect('goEditCategory', (directory) => {
-  navState.setCurrentDir(cleanDirectory(directory));
-  Goto({path: '/admin/categories/' + encodeURIComponent(directory) + '/edit'});
+  navState.setCurrentDir(directory);
+  Goto({path: '/admin/categories/' + encodePath(directory) + '/edit'});
+});
+
+Effect('goEditArticle', (path) => {
+  navState.setCurrentDir(encodePath(path.replace(/\/[^\/]+\.md$/, '')));
+  Goto({path: '/admin/articles/' + encodePath(path) + '/edit'});
 });
 
 Effect('goDirectory', (directory) => {
   navState.setCurrentDir(directory);
-  Goto({path: '/directory/' + directory});
+  Goto({path: '/directory/' + encodePath(directory)});
 });
 
 Effect('goArticle', (currentArticlePath) => {
   navState.setCurrentDir(currentArticlePath);
   Actions.getArticle(currentArticlePath);
-  Goto({path: '/article/' + encodeURIComponent(cleanDirectory(currentArticlePath))});
+  Goto({path: '/article/' + encodePath(currentArticlePath)});
 });
 
 Effect('goHome', () => {

@@ -9,13 +9,28 @@
   width: 40rem;
 }
 
+$narrowColumn: 4rem;
 table {
   background-color: white;
   .table-cell-bin {
-    width: 10rem;
+    width: $narrowColumn;
+    text-align: center;
+  }
+  .table-cell-int {
+    width: $narrowColumn;
+    text-align: right;
+  }
+  .table-cell-date {
+    width: 1.25 * $narrowColumn;
+    text-align: right;
   }
   .table-cell-button {
-    width: 15rem;
+    width: 1.5 * $narrowColumn;
+  }
+  .table-row-disabled {
+    td {
+      background-color: rgba(200,200,200,0.5);
+    }
   }
 }
 

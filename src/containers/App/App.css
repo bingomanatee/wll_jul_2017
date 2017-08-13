@@ -552,9 +552,18 @@ https://github.com/yahoo/pure/blob/master/LICENSE.md
 table {
   background-color: white; }
   table .table-cell-bin {
-    width: 10rem; }
+    width: 4rem;
+    text-align: center; }
+  table .table-cell-int {
+    width: 4rem;
+    text-align: right; }
+  table .table-cell-date {
+    width: 5rem;
+    text-align: right; }
   table .table-cell-button {
-    width: 15rem; }
+    width: 6rem; }
+  table .table-row-disabled td {
+    background-color: rgba(200, 200, 200, 0.5); }
 
 .form-buttons {
   display: flex;
