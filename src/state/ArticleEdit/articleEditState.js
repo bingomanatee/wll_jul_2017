@@ -10,7 +10,7 @@ const updateState = (state, update) => _.extend({}, INITIAL, state || {}, update
 
 const articleUrl = (article) => {
   const path = encodePath(article.path);
-  return `${URI_ROOT}/articles/${path}`;
+  return `${URI_ROOT}/articles/${path}.json`;
 }
 
 const articleEditState = State('articleEditState', {
@@ -54,10 +54,12 @@ Hook((action, getState) => {
   }
 });
 
-Effect('loadEditArticle', (path) => {
-  axios.get(articleUrl({path: path}))
-    .then((result) => {
-      console.log('edited article: ', result.data);
-      articleEditState.setArticleEditArticle(result.data);
-    });
+Hook((action, getState) => {
+  if (action.type === 'articleEditState_setArticleEditPath') {
+    axios(articleUrl({path: action.payload}))
+      .then((result) => {
+      console.log('loaded article edit article: ', result.data);
+        Actions.articleEditState.setArticleEditArticle(result.data);
+      });
+  }
 });

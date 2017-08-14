@@ -8,34 +8,44 @@ import articleDate from '../../utils/articleDate';
 export default Component(
   {
     getInitialState(){
-      return {editedCategory: {}, loaded: false, published: false};
+      return {category: false, loaded: false, directory: this.props.directory};
     },
-    directory() {
-      let match = /categories\/(.*)\/edit/.exec(this.props.location);
-      return decodeURIComponent(match[1]);
-    },
-    componentDidMount() {
-      Actions.loadEditCategory(this.directory());
-    },
-    componentDidUpdate() {
-      if (this.props.category && !this.state.loaded) {
-        this.setState({editedCategory: _.cloneDeep(this.props.category), loaded: true});
+
+    componentWillMount() {
+      console.log('will mount');
+      if (this.props.category) {
+        this.setState({category: _.cloneDeep(this.props.category)});
       }
     },
+
+    componentDidMount() {
+      if (!this.props.directory) {
+        Actions.categoryEditState.setCategoryEditDirectory(this.props.params.directory);
+      }
+    },
+
+    componentDidUpdate() {
+      console.log('componentDidUpdate with state category: ', this.state.category, 'props category: ', this.props.category);
+
+      if (this.props.category && (!this.state.category)) {
+        this.setState({category: _.cloneDeep(this.props.category)});
+      }
+    },
+
     setTitle(title) {
-      if (this.state.editedCategory) {
-        this.setState({editedCategory: _.extend(_.cloneDeep(this.state.editedCategory), {title: title || ''})});
+      if (this.state.category) {
+        this.setState({category: _.extend(_.cloneDeep(this.state.category), {title: title || ''})});
       }
     },
 
     reset() {
-      this.setState({editedCategory: _.cloneDeep(this.props.category)});
+      this.setState({category: _.cloneDeep(this.props.category)});
       this.forceUpdate();
     },
 
     changePublished() {
-      if (this.state.editedCategory) {
-        this.setState({editedCategory: _.extend(_.cloneDeep(this.state.editedCategory), {published: !this.state.editedCategory.published})});
+      if (this.state.category) {
+        this.setState({category: _.extend(_.cloneDeep(this.state.category), {published: !this.state.category.published})});
       }
     },
 
@@ -44,25 +54,27 @@ export default Component(
       if (!this.props.apiToken) {
         return Actions.goHome();
       }
-      Actions.updateCategoryEditCategory(this.state.editedCategory);
+      Actions.updateCategoryEditCategory(this.state.category);
     },
 
     render () {
+      console.log('rendering with state category: ', this.state.category, 'props category: ', this.props.category);
       return <div className="Admin">
         <div className="Admin__frame">
           <h1 className="pageHeader"><a onClick={() => Actions.goAdmin()}>Admin</a>:
-            <a onClick={() => Actions.goCategories()}>Categories</a>: Edit Category &quot;{this.props.category.directory}&quot;</h1>
-          <form className="pure-form pure-form-aligned">
+            <a onClick={() => Actions.goCategories()}>Categories</a>: Edit
+            Category &quot;{this.props.directory}&quot;</h1>
+          {this.state.category && (<form className="pure-form pure-form-aligned">
             <fieldset>
               <div className="pure-control-group">
                 <label for="name">Directory</label>
-                <input id="name" type="text" value={this.state.editedCategory.directory}
+                <input id="name" type="text" value={this.state.category.directory}
                        className="edit-field" disabled={true}/>
               </div>
 
               <div className="pure-control-group">
                 <label for="name">Title</label>
-                <input id="name" type="text" placeholder="Title" value={this.state.editedCategory.title}
+                <input id="name" type="text" placeholder="Title" value={this.state.category.title}
                        className="edit-field"
                        onChange={(event) => this.setTitle(event.target.value)}/>
               </div>
@@ -70,7 +82,7 @@ export default Component(
               <div className="pure-controls">
                 <label for="cb" className="pure-checkbox">
                   <Checkbox checkboxClass={'icheckbox_minimal-grey'}
-                            checked={this.state.editedCategory.published}
+                            checked={this.state.category.published}
                             onChange={() => this.changePublished()}/> Published
                 </label>
               </div>
@@ -80,9 +92,9 @@ export default Component(
                 <button className="pure-button" onClick={() => this.reset()}>Reset</button>
               </div>
             </fieldset>
-          </form>
-          <h2>Articles</h2>
-          <table className="pure-table">
+          </form>)}
+          {this.state.category && (<h2>Articles</h2>)}
+          {this.state.category && (<table className="pure-table">
             <thead>
             <tr>
               <th>Title</th>
@@ -97,18 +109,19 @@ export default Component(
                 <td>{article.title}</td>
                 <td className="table-cell-bin">{article.published ? 'Yes' : 'No'}</td>
                 <td className="table-cell-date">{articleDate(article)}</td>
-                <td className="table-cell-button"><button  onClick={() => Actions.goEditArticle(article.path)} className="pure-button">Edit</button></td>
+                <td className="table-cell-button">
+                  <button onClick={() => Actions.goEditArticle(article.path)} className="pure-button">Edit</button>
+                </td>
               </tr>
             ))}
             </tbody>
-          </table>
+          </table>)}
         </div>
       </div>
     }
   },
   (state) => ({
-    location: state.routing.locationBeforeTransitions.pathname,
     category: state.categoryEditState.category,
-    apiToken: state.authState.apiToken
+    directory: state.categoryEditState.directory
   })
 )

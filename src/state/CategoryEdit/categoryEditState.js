@@ -1,14 +1,14 @@
 import React from 'react'
 import {Hook, Goto, State, Actions, Effect} from 'jumpsuit';
 import _ from 'lodash';
-import cleanDirectory from './../../utils/cleanDirectory';
 import makeAuthHeader from './../../utils/makeAuthHeader';
 import {URI_ROOT} from '../../config';
-
+import axios from 'axios';
+import encodePath from './../../utils/encodePath';
 const INITIAL = {directory: false, category: false, edited: false};
 const updateState = (state, update) => _.extend({}, INITIAL, state || {}, update || {});
 
-const categoryUrl = (category) => `${URI_ROOT}/categories/${encodeURIComponent(category.directory)}`;
+const categoryUrl = (category) => `${URI_ROOT}/categories/${encodePath(category.directory)}.json`;
 
 const categoryEditState = State('categoryEditState', {
   initial: INITIAL,
@@ -19,6 +19,7 @@ const categoryEditState = State('categoryEditState', {
 
   setCategoryEditCategory(state, category) {
     category = _.cloneDeep(category);
+    console.log('edit category set to ', category);
     return updateState(state, {category});
   }
 });
@@ -34,9 +35,10 @@ Effect('updateCategoryEditCategory', (category) => {
 Hook((action, getState) => {
   if (action.type === 'updateCategoryEditCategory') {
     const category = action.payload;
-    const headers = makeAuthHeader(getState());
-    fetch(new Request(categoryUrl(category),
-      {method: 'PUT', body: JSON.stringify(category), headers}))
+    axios({url: categoryUrl(category),
+      method: 'PUT', data: category, headers: {
+        'Auth-token': getState().authState.apiToken
+    }})
       .then(() => {
         Actions.getDirectories();
         Actions.goCategories();
@@ -46,12 +48,11 @@ Hook((action, getState) => {
   }
 });
 
-Effect('loadEditCategory', (directory) => {
-  fetch(`${URI_ROOT}/categories/${encodeURIComponent(directory)}`)
-    .then((result) => {
-      return result.json();
-    })
-    .then((json) => {
-      categoryEditState.setCategoryEditCategory(json);
-    });
+Hook((action, getState) => {
+  if (action.type === 'categoryEditState_setCategoryEditDirectory') {
+    axios(categoryUrl({directory: action.payload}))
+      .then((result) => {
+        Actions.categoryEditState.setCategoryEditCategory(result.data);
+      });
+  }
 });

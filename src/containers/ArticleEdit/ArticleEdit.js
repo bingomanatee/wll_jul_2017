@@ -8,27 +8,28 @@ import articleDate from '../../utils/articleDate';
 export default Component(
   {
     getInitialState(){
-      return {article: {}, path: '', loaded: false, published: false};
+      return {article: false, path: '', loaded: false, published: false};
     },
     directory() {
       let match = /articles\/(.*)\/edit/.exec(this.props.location);
       return decodeURIComponent(match[1]);
     },
     componentWillMount() {
-      if (!this.props.path) {
-        this.setState({path: this.props.params.path});
-      } else {
-        this.setState({path: this.props.path})
+      if (this.props.article) {
+        this.setState({article: _.cloneDeep(this.props.article)})
       }
     },
     componentDidMount() {
-      Actions.loadEditArticle(this.state.path);
+      if (!this.props.path) {
+        Actions.articleEditState.setArticleEditPath(this.props.params.path);
+      }
     },
     componentDidUpdate() {
-      if (this.props.article && !this.state.loaded) {
+      if (this.props.article && !this.state.article) {
         this.setState({article: _.cloneDeep(this.props.article), loaded: true});
       }
     },
+
     setTitle(title) {
       if (this.state.article) {
         this.setState({article: _.extend(_.cloneDeep(this.state.article), {title: title || ''})});
@@ -58,9 +59,9 @@ export default Component(
       return <div className="Admin">
         <div className="Admin__frame">
           <h1 className="pageHeader"><a onClick={() => Actions.goAdmin()}>Admin</a>:
-            <a onClick={() => Actions.goCategories()}>Categories</a>: Edit Article &quot;{this.state.path}&quot;
+            <a onClick={() => Actions.goCategories()}>Categories</a>: Edit Article &quot;{this.props.path}&quot;
           </h1>
-          <form className="pure-form pure-form-aligned">
+          { this.state.article && (<form className="pure-form pure-form-aligned">
             <fieldset>
               <div className="pure-control-group">
                 <label for="name">Path</label>
@@ -85,7 +86,8 @@ export default Component(
 
               <div className="pure-control-group">
                 <h2>Content</h2>
-                <textarea style={({height: '60vh', 'min-height': '20rem', width: '100%'})} value={this.state.article.content}>
+                <textarea style={({height: '60vh', 'min-height': '20rem', width: '100%'})}
+                          value={this.state.article.content}>
                 </textarea>
               </div>
               <div className="form-buttons">
@@ -94,7 +96,7 @@ export default Component(
                 <button className="pure-button" onClick={() => this.reset()}>Reset</button>
               </div>
             </fieldset>
-          </form>
+          </form>)}
         </div>
       </div>
     }
