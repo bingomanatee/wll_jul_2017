@@ -5,6 +5,8 @@ import {Checkbox, Radio} from 'react-icheck';
 import 'icheck/skins/all.css'; // or single skin css
 import articleDate from '../../utils/articleDate';
 
+const rowClass = (article) => article.published ? '' : 'table-row-disabled';
+
 export default Component(
   {
     getInitialState(){
@@ -105,7 +107,7 @@ export default Component(
             </thead>
             <tbody>
             {this.props.category.articles && this.props.category.articles.map((article, i) => (
-              <tr key={`article-${article.path}-${i}`}>
+              <tr key={`article-${article.path}-${i}`}  className={rowClass(article)}>
                 <td>{article.title}</td>
                 <td className="table-cell-bin">{article.published ? 'Yes' : 'No'}</td>
                 <td className="table-cell-date">{articleDate(article)}</td>

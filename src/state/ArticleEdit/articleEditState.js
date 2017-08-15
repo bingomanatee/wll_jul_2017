@@ -48,6 +48,7 @@ Hook((action, getState) => {
       .then(() => {
         Actions.getArticles();
         Actions.getHomepageArticles();
+       setTimeout(() =>  Actions.goEditCategory(article.directory), 2000);
       }).catch((err) => {
       console.log('error updating articles:', err);
     });

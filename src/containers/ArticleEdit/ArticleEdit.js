@@ -32,13 +32,20 @@ export default Component(
 
     setTitle(title) {
       if (this.state.article) {
-        this.setState({article: _.extend(_.cloneDeep(this.state.article), {title: title || ''})});
+        this.setState({article: _.extend(_.cloneDeep(this.state.article), {title: title})});
       }
     },
 
     reset() {
       this.setState({article: _.cloneDeep(this.props.category)});
       this.forceUpdate();
+    },
+
+    changeContent(content) {
+      console.log('setting content:', content);
+      if (this.state.article) {
+        this.setState({article: _.extend(_.cloneDeep(this.state.article), {content})});
+      }
     },
 
     changePublished() {
@@ -87,6 +94,7 @@ export default Component(
               <div className="pure-control-group">
                 <h2>Content</h2>
                 <textarea style={({height: '60vh', 'min-height': '20rem', width: '100%'})}
+                          onChange={(event) => this.changeContent(event.target.value)}
                           value={this.state.article.content}>
                 </textarea>
               </div>
