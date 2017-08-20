@@ -10,25 +10,17 @@ const rowClass = (article) => article.published ? '' : 'table-row-disabled';
 export default Component(
   {
     getInitialState(){
-      return {category: false, loaded: false, directory: this.props.directory};
-    },
-
-    componentWillMount() {
-      console.log('will mount');
-      if (this.props.category) {
-        this.setState({category: _.cloneDeep(this.props.category)});
-      }
+      return {category: this.props.category, loaded: false, directory: this.props.directory};
     },
 
     componentDidMount() {
+      console.log('cdm: ', this.props.directory, 'param:', this.props.params.directory);
       if (!this.props.directory) {
-        Actions.categoryEditState.setCategoryEditDirectory(this.props.params.directory);
+        Actions.categoryEditState.setDirectory(this.props.params.directory);
       }
     },
 
     componentDidUpdate() {
-      console.log('componentDidUpdate with state category: ', this.state.category, 'props category: ', this.props.category);
-
       if (this.props.category && (!this.state.category)) {
         this.setState({category: _.cloneDeep(this.props.category)});
       }
@@ -59,6 +51,16 @@ export default Component(
       Actions.updateCategoryEditCategory(this.state.category);
     },
 
+    goArticle(article) {
+      Actions.categoryEditState.reset();
+      Actions.goEditArticle(article.path)
+    },
+    
+    addArticle(event) {
+      event.preventDefault();
+      Actions.goNewArticle(this.props.directory);
+    },
+
     render () {
       console.log('rendering with state category: ', this.state.category, 'props category: ', this.props.category);
       return <div className="Admin">
@@ -70,7 +72,7 @@ export default Component(
             <fieldset>
               <div className="pure-control-group">
                 <label for="name">Directory</label>
-                <input id="name" type="text" value={this.state.category.directory}
+                <input id="directory" type="text" value={this.state.category.directory}
                        className="edit-field" disabled={true}/>
               </div>
 
@@ -90,7 +92,10 @@ export default Component(
               </div>
               <div className="form-buttons">
                 <button className="pure-button pure-button-primary" onClick={(event) => this.update(event)}>Update
-                </button>
+                </button>   
+                
+                <button className="pure-button pure-button-primary" onClick={(event) => this.addArticle(event)}>Add Story
+              </button>
                 <button className="pure-button" onClick={() => this.reset()}>Reset</button>
               </div>
             </fieldset>
@@ -112,7 +117,7 @@ export default Component(
                 <td className="table-cell-bin">{article.published ? 'Yes' : 'No'}</td>
                 <td className="table-cell-date">{articleDate(article)}</td>
                 <td className="table-cell-button">
-                  <button onClick={() => Actions.goEditArticle(article.path)} className="pure-button">Edit</button>
+                  <button onClick={() => this.goArticle(article)} className="pure-button">Edit</button>
                 </td>
               </tr>
             ))}
@@ -124,6 +129,7 @@ export default Component(
   },
   (state) => ({
     category: state.categoryEditState.category,
-    directory: state.categoryEditState.directory
+    directory: state.categoryEditState.directory,
+    apiToken: state.authState.apiToken
   })
 )

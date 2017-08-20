@@ -9,6 +9,10 @@
   width: 40rem;
 }
 
+.nowrap {
+  white-space: nowrap !important;
+}
+
 $narrowColumn: 4rem;
 table {
   background-color: white;

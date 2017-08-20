@@ -4,6 +4,7 @@ import articleState from './Articles/articleState';
 import navState from './Nav/navState';
 import categoryEditState from './CategoryEdit/categoryEditState';
 import articleEditState from './ArticleEdit/articleEditState';
+import articleNewState from './ArticleNew/articleNewState';
 
 export default {
   counter,
@@ -11,5 +12,6 @@ export default {
   articleState,
   navState,
   categoryEditState,
-  articleEditState
-}
+  articleEditState,
+  articleNewState
+};

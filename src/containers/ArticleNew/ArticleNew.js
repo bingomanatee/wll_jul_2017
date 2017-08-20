@@ -2,33 +2,50 @@ import React from 'react'
 import {Component, Actions} from 'jumpsuit';
 import _ from 'lodash';
 import {Checkbox, Radio} from 'react-icheck';
-import 'icheck/skins/all.css';
+import 'icheck/skins/all.css'; // or single skin css
+import articleDate from '../../utils/articleDate';
 import sanitize from "sanitize-filename";
-// or single skin css
-import Directory from './../../models/Directory';
 
 export default Component(
   {
     getInitialState(){
-      return {article: false, path: '', loaded: false, filename: '', published: false};
+      const state = {
+        article: this.initialArticle(),
+        directory: '',
+        filename: 'new_file',
+        loaded: false,
+        published: false
+      };
+      state.article.path = this.path('new_file');
+      return state;
     },
-    directory() {
-      let match = /articles\/(.*)\/edit/.exec(this.props.location);
-      return decodeURIComponent(match[1]);
+
+    initialArticle() {
+      return {
+        title: 'Untitled',
+        path: this.props.directory,
+        directory: this.props.directory,
+        content: '',
+        published: false,
+        on_homepage: false,
+      };
     },
+
     componentWillMount() {
-      if (this.props.article) {
-        this.setState({article: _.cloneDeep(this.props.article)})
-      }
     },
+
     componentDidMount() {
-      if (!this.props.path) {
-        Actions.articleEditState.setPath(this.props.params.path);
+      if (!this.props.directory) {
+        Actions.articleNewState.setDirectory(this.props.params.directory);
       }
     },
+
     componentDidUpdate() {
-      if (this.props.article && !this.state.article) {
-        this.setState({article: _.cloneDeep(this.props.article), loaded: true});
+      if (this.props.directory && (this.state.article.directory !== this.props.directory)) {
+        this.updateArticle({directory: this.props.directory});
+      }
+      if (this.props.directory && (this.state.directory != this.props.directory)) {
+        this.setState({directory: this.props.directory});
       }
     },
 
@@ -36,21 +53,36 @@ export default Component(
       this.updateArticle({title});
     },
 
+    setFilename(filename) {
+      filename = sanitize(filename.replace(/\.md$/i, ''));
+      this.setState({filename});
+      this.updateArticle({path: this.path(filename)});
+    },
+
+    path(filename){
+      return `${this.props.directory}/${filename || this.state.filename}.md`;
+    },
+
     updateArticle(params) {
-      if (!this.state.article || !params) {
+      if (!this.state.article) {
         return;
       }
-      const article = _.extend({}, this.state.article, params);
-      this.setState({article});
+      const article = _.extend({}, this.state.article, {directory: this.state.directory}, params);
+      if (JSON.stringify(article) !== JSON.stringify(this.state.article)) {
+        this.setState({article});
+      }
     },
 
     reset() {
-      this.setState({article: _.cloneDeep(this.props.category)});
+      this.setState({article: this.initialArticle()});
       this.forceUpdate();
     },
 
     changeContent(content) {
-      this.updateArticle({content});
+      console.log('setting content:', content);
+      if (this.state.article) {
+        this.setState({article: _.extend(_.cloneDeep(this.state.article), {content})});
+      }
     },
 
     changePublished() {
@@ -77,10 +109,17 @@ export default Component(
       return <div className="Admin">
         <div className="Admin__frame">
           <h1 className="pageHeader"><a onClick={() => Actions.goAdmin()}>Admin</a>:
-            <a onClick={() => Actions.goCategories()}>Categories</a>: Edit Article &quot;{this.props.path}&quot;
+            <a onClick={() => Actions.goCategories()}>Categories</a>: New Article in &quot;{this.state.directory}&quot;
           </h1>
           { this.state.article && (<form className="pure-form pure-form-aligned">
             <fieldset>
+              <div className="pure-control-group">
+                <label for="filename">Filename</label>
+                <input id="filename" type="text" placeholder="Filename" value={this.state.filename}
+                       className="edit-field"
+                       onChange={(event) => this.setFilename(event.target.value)}/>
+              </div>
+
               <div className="pure-control-group">
                 <label for="name">Path</label>
                 <input id="name" type="text" value={this.state.article.path}
@@ -95,24 +134,31 @@ export default Component(
               </div>
 
               <div className="pure-control-group">
-                <label for="cb" className="pure-checkbox">
-                  <Checkbox checkboxClass={'icheckbox_minimal-grey'}
-                            checked={this.state.article.published}
-                            onChange={() => this.changePublished()}/> Published
+                <label for="cb">&nbsp;
                 </label>
+                <span onClick={() => this.changePublished()}>
+            <Checkbox checkboxClass={'icheckbox_minimal-grey'}
+                      checked={this.state.article.published}
+                      onChange={() => this.changePublished()}/> &nbsp;
+                  Published
+                </span>
               </div>
 
               <div className="pure-control-group">
-               <span> <label for="cb" className="pure-checkbox">
+                <label for="cb"> &nbsp;
+                </label>
+                <span onClick={() => this.changeOnHomepage()}>
                   <Checkbox checkboxClass={'icheckbox_minimal-grey'}
                             checked={this.state.article.on_homepage}
-                            onChange={() => this.changeOnHomepage()}/> Show On Homepage
-               </label></span>
+                            onChange={() => this.changeOnHomepage()}
+                  />
+                  &nbsp; Show On Homepage
+                </span>
               </div>
 
               <div className="pure-control-group">
-                <h2>Markdown Content</h2>
-                <textarea style={({height: '60vh', 'minHeight': '20rem', width: '100%'})}
+                <h2>Content</h2>
+                <textarea style={({height: '60vh', 'min-height': '20rem', width: '100%'})}
                           onChange={(event) => this.changeContent(event.target.value)}
                           value={this.state.article.content}>
                 </textarea>
@@ -130,8 +176,8 @@ export default Component(
   },
   (state) => ({
     location: state.routing.locationBeforeTransitions.pathname,
-    article: state.articleEditState.article,
-    path: state.articleEditState.path,
+    article: state.articleNewState.article,
+    directory: state.articleNewState.directory,
     apiToken: state.authState.apiToken
   })
 )

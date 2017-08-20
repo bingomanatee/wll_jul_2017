@@ -16,6 +16,7 @@ import Admin from './containers/Admin/Admin';
 import Categories from './containers/Categories/Categories';
 import CategoryEdit from './containers/CategoryEdit/CategoryEdit';
 import ArticleEdit from './containers/ArticleEdit/ArticleEdit';
+import ArticleNew from './containers/ArticleNew/ArticleNew';
 
 // Simple Routing
 Render(states, (
@@ -28,8 +29,9 @@ Render(states, (
       <Route path="article/:currentArticlePath" component={Article} />
       <Route path="admin" component={Admin} />
       <Route path="admin/categories" component={Categories} />
+      <Route path="admin/articles/:directory/new" component={ArticleNew} />
       <Route path="admin/categories/:directory/edit" component={CategoryEdit} />
-      <Route path="admin/articles/:path/edit" component={ArticleEdit} />
+      <Route path="admin/articles/:directory/edit" component={ArticleEdit} />
     </Route>
   </Router>
 ));

@@ -5,6 +5,8 @@ import makeAuthHeader from './../../utils/makeAuthHeader';
 import {URI_ROOT} from '../../config';
 import axios from 'axios';
 import encodePath from './../../utils/encodePath';
+import DirectoryModel from './../../models/Directory';
+
 const INITIAL = {directory: false, category: false, edited: false};
 const updateState = (state, update) => _.extend({}, INITIAL, state || {}, update || {});
 
@@ -13,14 +15,18 @@ const categoryUrl = (category) => `${URI_ROOT}/categories/${encodePath(category.
 const categoryEditState = State('categoryEditState', {
   initial: INITIAL,
 
-  setCategoryEditDirectory (state, directory)  {
+  setDirectory (state, directory)  {
     return updateState(state, {directory});
   },
 
-  setCategoryEditCategory(state, category) {
+  setCategory(state, category) {
     category = _.cloneDeep(category);
     console.log('edit category set to ', category);
     return updateState(state, {category});
+  },
+
+  reset(state) {
+    return updateState();
   }
 });
 
@@ -28,7 +34,7 @@ export default categoryEditState;
 
 // setting revision as opposed to initial population
 Effect('updateCategoryEditCategory', (category) => {
-  categoryEditState.setCategoryEditCategory(category);
+  categoryEditState.setCategory(category);
 });
 
 // need hook to get auth header
@@ -49,10 +55,12 @@ Hook((action, getState) => {
 });
 
 Hook((action, getState) => {
-  if (action.type === 'categoryEditState_setCategoryEditDirectory') {
-    axios(categoryUrl({directory: action.payload}))
-      .then((result) => {
-        Actions.categoryEditState.setCategoryEditCategory(result.data);
-      });
+  console.log('hook for setDirectory', action.type);
+
+  if (action.type === 'categoryEditState_setDirectory') {
+    DirectoryModel.get()
+      .then((directory) => {
+        categoryEditState.setCategory(directory);
+      })
   }
 });

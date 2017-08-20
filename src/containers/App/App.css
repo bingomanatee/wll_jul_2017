@@ -549,6 +549,9 @@ https://github.com/yahoo/pure/blob/master/LICENSE.md
 .edit-field {
   width: 40rem; }
 
+.nowrap {
+  white-space: nowrap !important; }
+
 table {
   background-color: white; }
   table .table-cell-bin {

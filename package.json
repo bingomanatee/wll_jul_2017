@@ -15,7 +15,8 @@
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-icheck": "^0.3.8",
-    "react-scripts": "1.0.10"
+    "react-scripts": "1.0.10",
+    "sanitize-filename": "^1.6.1"
   },
   "scripts": {
     "start": "react-scripts start",

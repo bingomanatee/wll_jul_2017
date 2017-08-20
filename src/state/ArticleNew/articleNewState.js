@@ -5,7 +5,7 @@ import {URI_ROOT} from '../../config';
 import axios from 'axios';
 import encodePath from '../../utils/encodePath';
 
-const INITIAL = {article: false, path: false, edited: false};
+const INITIAL = {article: {}, path: false, saved: false};
 const updateState = (state, update) => _.extend({}, INITIAL, state || {}, update || {});
 
 const articleUrl = (article) => {
@@ -13,11 +13,11 @@ const articleUrl = (article) => {
   return `${URI_ROOT}/articles/${path}.json`;
 }
 
-const articleEditState = State('articleEditState', {
+const articleNewState = State('articleNewState', {
   initial: INITIAL,
 
-  setPath (state, path)  {
-    return updateState(state, {path});
+  setDirectory (state, directory)  {
+    return updateState(state, {directory});
   },
 
   setArticle(state, article) {
@@ -26,16 +26,22 @@ const articleEditState = State('articleEditState', {
   }
 });
 
-export default articleEditState;
+export default articleNewState;
 
 // used to set updated result as opposed to original set
-Effect('updateArticleEditArticle', (article) => {
-  articleEditState.setArticle(article);
+Effect('updateArticleNewArticle', (article) => {
+  articleNewState.setArticle(article);
 });
 
 // needed to get permission
 Hook((action, getState) => {
-  if (action.type === 'updateArticleEditArticle') {
+  if (action.type === 'articleNewState_setDirectory') {
+    const article = getState().articleNewState.article;
+    article.directory = action.payload;
+    articleNewState.setArticle(article);
+  }
+
+  if (action.type === 'updateArticleNewArticle') {
     const article = action.payload;
     axios({
       method: 'PUT',

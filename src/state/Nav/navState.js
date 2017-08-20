@@ -2,6 +2,7 @@ import React from 'react'
 import {Hook, Goto, State, Actions, Effect} from 'jumpsuit';
 import _ from 'lodash';
 import encodePath from '../../utils/encodePath';
+import pathToDirectory from '../../utils/pathToDirectory';
 
 const navState = State('navState', {
   // Initial State
@@ -32,7 +33,7 @@ const navState = State('navState', {
     let newState = _.cloneDeep(state);
     newState.toggleNav = false;
     newState.currentArticlePath = currentArticlePath;
-    newState.currentDir = currentArticlePath.replace(/\/[^\/]+\.md$/, '');
+    newState.currentDir = pathToDirectory(currentArticlePath);
     return newState;
   }
 });
@@ -52,6 +53,11 @@ Effect('goEditCategory', (directory) => {
 Effect('goEditArticle', (path) => {
   navState.setCurrentDir(encodePath(path.replace(/\/[^\/]+\.md$/, '')));
   Goto({path: '/admin/articles/' + encodePath(path) + '/edit'});
+});
+
+Effect('goNewArticle', (directory) => {
+  navState.setCurrentDir(directory);
+  Goto({path: '/admin/articles/' + encodePath(directory) + '/new'});
 });
 
 Effect('goDirectory', (directory) => {
