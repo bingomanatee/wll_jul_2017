@@ -4,6 +4,7 @@ import _ from 'lodash';
 import {URI_ROOT} from '../../config';
 import axios from 'axios';
 import encodePath from '../../utils/encodePath';
+import Article from '../../models/Article';
 
 const INITIAL = {article: {}, path: false, saved: false};
 const updateState = (state, update) => _.extend({}, INITIAL, state || {}, update || {});
@@ -43,29 +44,10 @@ Hook((action, getState) => {
 
   if (action.type === 'updateArticleNewArticle') {
     const article = action.payload;
-    axios({
-      method: 'PUT',
-      url: articleUrl(article),
-      headers: {
-        'Auth-token': getState().authState.apiToken
-      },
-      data: article
-    })
+    const apiToken = getState().authState.apiToken;
+    Article.create(article, apiToken)
       .then(() => {
-        Actions.getHomepageArticles();
         Actions.goEditCategory(article.directory);
-      }).catch((err) => {
-      console.log('error updating articles:', err);
-    });
-  }
-});
-
-Hook((action, getState) => {
-  if (action.type === 'articleEditState_setPath') {
-    axios(articleUrl({path: action.payload}))
-      .then((result) => {
-        console.log('loaded article edit article: ', result.data);
-        Actions.articleEditState.setArticle(result.data);
-      });
+      })
   }
 });

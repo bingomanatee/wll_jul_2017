@@ -62,7 +62,6 @@ export default Component(
     },
 
     render () {
-      console.log('rendering with state category: ', this.state.category, 'props category: ', this.props.category);
       return <div className="Admin">
         <div className="Admin__frame">
           <h1 className="pageHeader"><a onClick={() => Actions.goAdmin()}>Admin</a>:

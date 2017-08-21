@@ -6,6 +6,7 @@ import 'icheck/skins/all.css';
 import sanitize from "sanitize-filename";
 // or single skin css
 import Directory from './../../models/Directory';
+import Article from './../../models/Article';
 
 export default Component(
   {

@@ -14,13 +14,13 @@ const asDirectory = (input) => {
 }
 
 const directoryModel = {
-    show(directory) {
-      return axios(directoryModel.categoryUrl({directory: asDirectory(directory)}))
+    load(directory) {
+      return axios(directoryModel.categoryUrl(directory))
         .then((result) => result.data);
     },
 
     categoryUrl(directory) {
-      return `${URI_ROOT}/categories/${encodePath(directory)}.json`;
+      return `${URI_ROOT}/categories/${encodePath(asDirectory(directory))}.json`;
     }
   }
 ;

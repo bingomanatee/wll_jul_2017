@@ -35,8 +35,10 @@ export default Component(
     },
 
     componentDidMount() {
-      if (!this.props.directory) {
+      if (!this.state.directory) {
         Actions.articleNewState.setDirectory(this.props.params.directory);
+        this.setState({directory: this.props.params.directory});
+        this.updateArticle({path: `${this.props.params.directory}/${this.state.filename}.md`})
       }
     },
 
@@ -79,22 +81,15 @@ export default Component(
     },
 
     changeContent(content) {
-      console.log('setting content:', content);
-      if (this.state.article) {
-        this.setState({article: _.extend(_.cloneDeep(this.state.article), {content})});
-      }
+      this.updateArticle({content});
     },
 
     changePublished() {
-      if (this.state.article) {
-        this.setState({article: _.extend(_.cloneDeep(this.state.article), {published: !this.state.article.published})});
-      }
+      this.updateArticle({published: !this.state.article.published});
     },
 
     changeOnHomepage() {
-      if (this.state.article) {
-        this.setState({article: _.extend(_.cloneDeep(this.state.article), {on_homepage: !this.state.article.on_homepage})});
-      }
+      this.updateArticle({on_homepage: !this.state.article.on_homepage})
     },
 
     update(event) {
@@ -102,10 +97,10 @@ export default Component(
       if (!this.props.apiToken) {
         return Actions.goHome();
       }
-      Actions.updateArticleEditArticle(this.state.article);
+      Actions.updateArticleNewArticle(this.state.article);
     },
 
-    render () {
+    render() {
       return <div className="Admin">
         <div className="Admin__frame">
           <h1 className="pageHeader"><a onClick={() => Actions.goAdmin()}>Admin</a>:

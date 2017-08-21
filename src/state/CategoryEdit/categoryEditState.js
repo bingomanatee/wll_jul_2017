@@ -55,12 +55,10 @@ Hook((action, getState) => {
 });
 
 Hook((action, getState) => {
-  console.log('hook for setDirectory', action.type);
-
   if (action.type === 'categoryEditState_setDirectory') {
-    DirectoryModel.get()
+    DirectoryModel.load(action.payload)
       .then((directory) => {
         categoryEditState.setCategory(directory);
-      })
+      });
   }
 });

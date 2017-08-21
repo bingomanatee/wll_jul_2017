@@ -4,6 +4,7 @@ import _ from 'lodash';
 import {URI_ROOT} from '../../config';
 import axios from 'axios';
 import encodePath from '../../utils/encodePath';
+import Article from '../../models/Article';
 
 const INITIAL = {article: false, path: false, edited: false};
 const updateState = (state, update) => _.extend({}, INITIAL, state || {}, update || {});
@@ -56,10 +57,13 @@ Hook((action, getState) => {
 
 Hook((action, getState) => {
   if (action.type === 'articleEditState_setPath') {
-    axios(articleUrl({path: action.payload}))
-      .then((result) => {
-        console.log('loaded article edit article: ', result.data);
-        Actions.articleEditState.setArticle(result.data);
-      });
+    if (action.payload) {
+      Article.load(action.payload)
+        .then((article) => {
+          Actions.articleEditState.setArticle(article);
+        });
+    } else {
+      console.log('no path for editstate');
+    }
   }
 });
