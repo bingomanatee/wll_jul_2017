@@ -43,11 +43,11 @@ export default Component(
     },
 
     componentDidUpdate() {
-      if (this.props.directory && (this.state.article.directory !== this.props.directory)) {
-        this.updateArticle({directory: this.props.directory});
-      }
-      if (this.props.directory && (this.state.directory != this.props.directory)) {
+      if (this.props.directory && (this.state.directory !== this.props.directory)) {
         this.setState({directory: this.props.directory});
+        this.updateArticle({directory: this.props.directory});
+      } else if (this.props.directory && (this.state.article.directory !== this.state.directory)) {
+        this.updateArticle({directory: this.state.directory});
       }
     },
 

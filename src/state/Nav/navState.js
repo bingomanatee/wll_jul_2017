@@ -47,12 +47,12 @@ Effect('goCategories', () => {
 
 Effect('goEditCategory', (directory) => {
   navState.setCurrentDir(directory);
-  Goto({path: '/admin/categories/' + encodePath(directory) + '/edit'});
+  Actions.categoryEditState.setDirectory(directory);
 });
 
 Effect('goEditArticle', (path) => {
   navState.setCurrentDir(encodePath(path.replace(/\/[^\/]+\.md$/, '')));
-  Goto({path: '/admin/articles/' + encodePath(path) + '/edit'});
+  Actions.articleEditState.setPath(path);
 });
 
 Effect('goNewArticle', (directory) => {

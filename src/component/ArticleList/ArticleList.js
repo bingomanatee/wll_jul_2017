@@ -104,6 +104,7 @@ export default class ArticleList extends React.Component {
         sortedArticles = _.sortBy(articles, (article) => dateToTime(article.file_revised));
     }
 
+    sortedArticles = _.filter(sortedArticles, 'published');
     return this.sortOrder() === 'd' ? sortedArticles.reverse() : sortedArticles;
   }
 

@@ -3,15 +3,16 @@ import {Component, Actions} from 'jumpsuit';
 import _ from 'lodash';
 import {Checkbox, Radio} from 'react-icheck';
 import 'icheck/skins/all.css';
-import sanitize from "sanitize-filename";
+import marked from 'marked';
 // or single skin css
 import Directory from './../../models/Directory';
 import Article from './../../models/Article';
+import ArticleInner from '../../component/Article/ArticleInner';
 
 export default Component(
   {
     getInitialState(){
-      return {article: false, path: '', loaded: false, filename: '', published: false};
+      return {article: false, path: '', loaded: false, filename: '', published: false, preview: false};
     },
     directory() {
       let match = /articles\/(.*)\/edit/.exec(this.props.location);
@@ -19,18 +20,21 @@ export default Component(
     },
     componentWillMount() {
       if (this.props.article) {
-        this.setState({article: _.cloneDeep(this.props.article)})
+        this.setState({article: _.cloneDeep(this.props.article), path: this.props.article.path})
       }
     },
     componentDidMount() {
-      if (!this.props.path) {
-        Actions.articleEditState.setPath(this.props.params.path);
-      }
+      Actions.articleEditState.setPath(this.props.path || this.props.params.path);
     },
     componentDidUpdate() {
-      if (this.props.article && !this.state.article) {
-        this.setState({article: _.cloneDeep(this.props.article), loaded: true});
+      if (this.props.article && !(this.state.article && this.state.article.path === this.state.path)) {
+        this.setState({article: _.cloneDeep(this.props.article), path: this.props.article.path, loaded: true});
       }
+    },
+
+    shouldComponentUpdate(nextProps, nextState) {
+      let update = (!(_.isEqual(nextProps, this.props) && _.isEqual(nextState, this.state)));
+      return update;
     },
 
     setTitle(title) {
@@ -42,6 +46,7 @@ export default Component(
         return;
       }
       const article = _.extend({}, this.state.article, params);
+      console.log('update article with published =', article.published);
       this.setState({article});
     },
 
@@ -56,13 +61,17 @@ export default Component(
 
     changePublished() {
       if (this.state.article) {
-        this.setState({article: _.extend(_.cloneDeep(this.state.article), {published: !this.state.article.published})});
+        this.updateArticle({published: !this.state.article.published});
       }
+    },
+
+    changePreview() {
+      this.setState({preview: !this.state.preview});
     },
 
     changeOnHomepage() {
       if (this.state.article) {
-        this.setState({article: _.extend(_.cloneDeep(this.state.article), {on_homepage: !this.state.article.on_homepage})});
+        this.updateArticle({on_homepage: !this.state.article.on_homepage});
       }
     },
 
@@ -123,8 +132,20 @@ export default Component(
                 </button>
                 <button className="pure-button" onClick={() => this.reset()}>Reset</button>
               </div>
+
+              <div className="pure-control-group">
+                <label for="preview" className="pure-checkbox">
+                  <Checkbox checkboxClass={'icheckbox_minimal-grey'}
+                            checked={this.state.preview}
+                            onChange={() => this.changePreview()}/> Preview
+                </label>
+              </div>
             </fieldset>
           </form>)}
+          { this.state.preview && this.state.article && this.state.article.content && <div>
+            <hr />
+            <ArticleInner article={this.state.article} />
+          </div>}
         </div>
       </div>
     }

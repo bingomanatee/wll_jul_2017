@@ -14,15 +14,14 @@ export default Component(
     },
 
     componentDidMount() {
-      console.log('cdm: ', this.props.directory, 'param:', this.props.params.directory);
       if (!this.props.directory) {
         Actions.categoryEditState.setDirectory(this.props.params.directory);
       }
     },
 
     componentDidUpdate() {
-      if (this.props.category && (!this.state.category)) {
-        this.setState({category: _.cloneDeep(this.props.category)});
+      if (this.props.category && !(this.state.category && this.state.category.directory === this.state.directory)) {
+        this.setState({category: _.cloneDeep(this.props.category), directory: this.state.category.directory});
       }
     },
 

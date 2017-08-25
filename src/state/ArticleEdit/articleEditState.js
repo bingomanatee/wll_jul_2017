@@ -61,6 +61,7 @@ Hook((action, getState) => {
       Article.load(action.payload)
         .then((article) => {
           Actions.articleEditState.setArticle(article);
+          Goto({path: '/admin/articles/' + encodePath(action.payload) + '/edit'});
         });
     } else {
       console.log('no path for editstate');

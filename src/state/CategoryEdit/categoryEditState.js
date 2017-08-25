@@ -16,6 +16,7 @@ const categoryEditState = State('categoryEditState', {
   initial: INITIAL,
 
   setDirectory (state, directory)  {
+    console.log('catEdit - set directory');
     return updateState(state, {directory});
   },
 
@@ -59,6 +60,7 @@ Hook((action, getState) => {
     DirectoryModel.load(action.payload)
       .then((directory) => {
         categoryEditState.setCategory(directory);
+        Goto({path: '/admin/categories/' + encodePath(action.payload) + '/edit'});
       });
   }
 });

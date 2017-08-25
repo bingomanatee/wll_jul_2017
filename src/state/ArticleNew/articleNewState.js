@@ -1,18 +1,10 @@
 import React from 'react'
 import {Hook, Goto, State, Actions, Effect} from 'jumpsuit';
 import _ from 'lodash';
-import {URI_ROOT} from '../../config';
-import axios from 'axios';
-import encodePath from '../../utils/encodePath';
 import Article from '../../models/Article';
 
 const INITIAL = {article: {}, path: false, saved: false};
 const updateState = (state, update) => _.extend({}, INITIAL, state || {}, update || {});
-
-const articleUrl = (article) => {
-  const path = encodePath(article.path);
-  return `${URI_ROOT}/articles/${path}.json`;
-}
 
 const articleNewState = State('articleNewState', {
   initial: INITIAL,
