@@ -4,6 +4,7 @@ import SortIcon from './../../component/SortIcon/SortIcon';
 import articleDate from './../../utils/articleDate';
 import _ from 'lodash';
 import pathToInitial from '../../utils/pathToInitial';
+import dirTitle from '../../utils/dirTitle';
 import {Actions} from 'jumpsuit';
 
 const SORTCOL_PATH = 'path';
@@ -123,7 +124,9 @@ export default class ArticleList extends React.Component {
     }
 
     render() {
-        const title = this.props.title;
+        let title = this.props.title;
+        const directory = this.props.directory;
+        if (directory) title = 'Articles in "' + _.capitalize(dirTitle(directory)) + '"';
         const titlePath = this.props.titlePath || '';
         const advanceSort = (sortColumn) => {
             return (next) => this.advanceSort(sortColumn, next)
@@ -131,20 +134,20 @@ export default class ArticleList extends React.Component {
         const articles = _.filter(this.props.articles, 'published');
         return <div className="ArticleList">
             <div className="ArticleList__row">
-                <div className="ArticleList__rowCell ArticleList__rowCell-path dark">
+                {directory ? (<div className="ArticleList__rowCell ArticleList__rowCell-dir"></div>) : (<div className="ArticleList__rowCell ArticleList__rowCell-path dark">
                     <div className="ArticleList__rowCellPathInner ArticleList__rowCellPathInner-path">{titlePath}</div>
-                </div>
-                <div className="ArticleList__rowCell articleList__rowCell-content">
+                </div>)}
+                <div className="ArticleList__rowCell articleList__rowCell-content ArticleList__rowCell-title">
                     <h2 className="pageHeader">{title}</h2>
                 </div>
             </div>
             <div className="ArticleList__row articleList__row-sort">
-                <div className="ArticleList__rowCell ArticleList__rowCell-sort ArticleList__rowCell-path dark">
+                {directory ? (<div className="ArticleList__rowCell ArticleList__rowCell-dir"></div>) : (<div className="ArticleList__rowCell ArticleList__rowCell-sort ArticleList__rowCell-path dark">
                     <div className="ArticleList__rowCellInner">
                         <SortIcon color="dark" direction={this.sortOrder(SORTCOL_PATH)}
                                   setSort={advanceSort(SORTCOL_PATH)}/>
                     </div>
-                </div>
+                </div>)}
                 <div className="ArticleList__rowCell ArticleList__rowCell-sort articleList__rowCell-content">
                     <div className="ArticleList__rowCellInner">
                         <SortIcon color="light" direction={this.sortOrder(SORTCOL_CONTENT)}
@@ -160,16 +163,16 @@ export default class ArticleList extends React.Component {
             </div>
             {this.sortArticles(articles).map((article, i) => (
                 <div className="ArticleList__row ArticleList___row-article" key={'article_' + article.path + _ + 'i'}>
-                    <div className="ArticleList__rowCell ArticleList__rowCell-path dark">
+                    {directory ? '' : (<div className="ArticleList__rowCell ArticleList__rowCell-path dark">
                         <div className="ArticleList__rowCellInner ArticleList__rowCellInner-path">
-                            <div>{pathToInitial(article.path)}</div>
+                            <div>{pathToInitial(dirTitle(article.directory))}</div>
                         </div>
-                    </div>
+                    </div>)}
                     <div className="ArticleList__rowCell articleList__rowCell-content"
                          onClick={() => Actions.goArticle(article.path)}>
                         <div className="ArticleList__rowCellInner">
-                            <h3><span
-                                className="path-secondary">{pathToInitial(article.directory, true)}</span>: {article.title}
+                            <h3>{directory ? (<span style={({color: 'rgba(0,0,0,0)'})}>...</span>) :(<span
+                                className="path-secondary">{pathToInitial(dirTitle(article.directory), true)}:</span>)} {article.title}
                             </h3>
                             <p>{article.description || ''} <span
                                 className="ArticleList__dateInline">{articleDate(article)}</span></p>

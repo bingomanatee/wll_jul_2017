@@ -58,6 +58,10 @@ $articleBFscale: 0.85;
       justify-content: center;
     }
 
+    &.ArticleList__rowCell-dir {
+      width: 3vw;
+    }
+
     &.ArticleList__rowCell-path {
       @include leftMargin();
       padding-right: 0;
@@ -75,6 +79,10 @@ $articleBFscale: 0.85;
           @include bodyFont(1);
         }
       }
+    }
+
+    &.ArticleList__rowCell-title {
+      padding-left: 3rem !important;
     }
 
     &.articleList__rowCell-content {
