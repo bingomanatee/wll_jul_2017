@@ -54,7 +54,7 @@ export default Component(
       Actions.categoryEditState.reset();
       Actions.goEditArticle(article.path)
     },
-    
+
     addArticle(event) {
       event.preventDefault();
       Actions.goNewArticle(this.props.directory);
@@ -69,20 +69,20 @@ export default Component(
           {this.state.category && (<form className="pure-form pure-form-aligned">
             <fieldset>
               <div className="pure-control-group">
-                <label for="name">Directory</label>
+                <label htmlFor="name">Directory</label>
                 <input id="directory" type="text" value={this.state.category.directory}
                        className="edit-field" disabled={true}/>
               </div>
 
               <div className="pure-control-group">
-                <label for="name">Title</label>
+                <label htmlFor="name">Title</label>
                 <input id="name" type="text" placeholder="Title" value={this.state.category.title}
                        className="edit-field"
                        onChange={(event) => this.setTitle(event.target.value)}/>
               </div>
 
               <div className="pure-controls">
-                <label for="cb" className="pure-checkbox">
+                <label htmlFor="cb" className="pure-checkbox">
                   <Checkbox checkboxClass={'icheckbox_minimal-grey'}
                             checked={this.state.category.published}
                             onChange={() => this.changePublished()}/> Published
@@ -90,8 +90,8 @@ export default Component(
               </div>
               <div className="form-buttons">
                 <button className="pure-button pure-button-primary" onClick={(event) => this.update(event)}>Update
-                </button>   
-                
+                </button>
+
                 <button className="pure-button pure-button-primary" onClick={(event) => this.addArticle(event)}>Add Story
               </button>
                 <button className="pure-button" onClick={() => this.reset()}>Reset</button>
@@ -104,6 +104,7 @@ export default Component(
             <tr>
               <th>Title</th>
               <th className="table-cell-bin">Published?</th>
+              <th className="table-cell-bin">On Homepage?</th>
               <th className="table-cell-date">Revised</th>
               <th className="table-cell-button">&nbsp;</th>
             </tr>
@@ -113,6 +114,7 @@ export default Component(
               <tr key={`article-${article.path}-${i}`}  className={rowClass(article)}>
                 <td>{article.title}</td>
                 <td className="table-cell-bin">{article.published ? 'Yes' : 'No'}</td>
+                <td className="table-cell-bin">{article.on_homepage ? 'Yes' : 'No'}</td>
                 <td className="table-cell-date">{articleDate(article)}</td>
                 <td className="table-cell-button">
                   <button onClick={() => this.goArticle(article)} className="pure-button">Edit</button>

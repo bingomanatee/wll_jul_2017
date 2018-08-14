@@ -46,7 +46,6 @@ export default Component(
         return;
       }
       const article = _.extend({}, this.state.article, params);
-      console.log('update article with published =', article.published);
       this.setState({article});
     },
 
@@ -92,20 +91,20 @@ export default Component(
           { this.state.article && (<form className="pure-form pure-form-aligned">
             <fieldset>
               <div className="pure-control-group">
-                <label for="name">Path</label>
+                <label htmlFor="name">Path</label>
                 <input id="name" type="text" value={this.state.article.path}
                        className="edit-field" disabled={true}/>
               </div>
 
               <div className="pure-control-group">
-                <label for="name">Title</label>
+                <label htmlFor="name">Title</label>
                 <input id="name" type="text" placeholder="Title" value={this.state.article.title}
                        className="edit-field"
                        onChange={(event) => this.setTitle(event.target.value)}/>
               </div>
 
               <div className="pure-control-group">
-                <label for="cb" className="pure-checkbox">
+                <label htmlFor="cb" className="pure-checkbox">
                   <Checkbox checkboxClass={'icheckbox_minimal-grey'}
                             checked={this.state.article.published}
                             onChange={() => this.changePublished()}/> Published
@@ -113,7 +112,7 @@ export default Component(
               </div>
 
               <div className="pure-control-group">
-               <span> <label for="cb" className="pure-checkbox">
+               <span> <label htmlFor="cb" className="pure-checkbox">
                   <Checkbox checkboxClass={'icheckbox_minimal-grey'}
                             checked={this.state.article.on_homepage}
                             onChange={() => this.changeOnHomepage()}/> Show On Homepage
@@ -134,7 +133,7 @@ export default Component(
               </div>
 
               <div className="pure-control-group">
-                <label for="preview" className="pure-checkbox">
+                <label htmlFor="preview" className="pure-checkbox">
                   <Checkbox checkboxClass={'icheckbox_minimal-grey'}
                             checked={this.state.preview}
                             onChange={() => this.changePreview()}/> Preview
