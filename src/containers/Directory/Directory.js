@@ -1,15 +1,16 @@
 import React from 'react'
 import {Component, Actions} from 'jumpsuit';
 import _ from 'lodash';
-import cleanDirectory from '../../utils/cleanDirectory'
 import ArticleList from '../../component/ArticleList/ArticleList';
 
 const articleListTitle = (directory, location) => {
-  if (location == '/') {
+  if (location === '/') {
     return 'Top Articles';
   }
-  return _((directory).split('_'))
-    .map(_.capitalize).join(' ');
+  return _((directory)
+    .split('_'))
+    .map(_.capitalize)
+    .join(' ');
 }
 
 export default Component(

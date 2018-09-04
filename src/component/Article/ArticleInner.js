@@ -4,6 +4,16 @@ import './articleInner.css';
 import pathToDirectory from '../../utils/pathToDirectory';
 import articleDate from './../../utils/articleDate';
 
+import {URI_ROOT} from '../../config';
+
+function imageRedirect(content) {
+  if (!(content && typeof content === 'string')) return '';
+
+  const out = content.replace(/\/blog_image/g, URI_ROOT.replace('/api', '') + '/blog_image');
+  console.log('imageRedirect out = ', out);
+  return out;
+}
+
 const ArticleInner = (props) => (
   <article>
     <div className="ArticleTitle">
@@ -23,7 +33,7 @@ const ArticleInner = (props) => (
         </div>
       </div>
     </div>
-    <div dangerouslySetInnerHTML={{__html: marked(props.article.content)}}/>
+    <div dangerouslySetInnerHTML={{__html: marked(imageRedirect(props.article.content))}}/>
   </article>
 )
 

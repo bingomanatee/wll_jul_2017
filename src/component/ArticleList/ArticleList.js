@@ -94,15 +94,15 @@ export default class ArticleList extends React.Component {
                 break;
 
             case SORTCOL_CONTENT:
-                sortedArticles = _.sortBy(articles, 'title', (article) => dateToTime(article.file_revised));
+                sortedArticles = _.sortBy(articles, 'title', (article) => dateToTime(article.fileRevised));
                 break;
 
             case SORTCOL_DATE:
-                sortedArticles = _.sortBy(articles, (article) => dateToTime(article.file_revised));
+                sortedArticles = _.sortBy(articles, (article) => dateToTime(article.fileRevised));
                 break;
 
             default:
-                sortedArticles = _.sortBy(articles, (article) => dateToTime(article.file_revised));
+                sortedArticles = _.sortBy(articles, (article) => dateToTime(article.fileRevised));
         }
 
         sortedArticles = _.filter(sortedArticles, 'published');
