@@ -1,7 +1,7 @@
 import React from 'react';
 import marked from 'marked';
 import './articleInner.css';
-import pathToDirectory from '../../utils/pathToDirectory';
+import categoryName from './../../utils/categoryName';
 import articleDate from './../../utils/articleDate';
 
 import {URI_ROOT} from '../../config';
@@ -10,7 +10,6 @@ function imageRedirect(content) {
   if (!(content && typeof content === 'string')) return '';
 
   const out = content.replace(/\/blog_image/g, URI_ROOT.replace('/api', '') + '/blog_image');
-  console.log('imageRedirect out = ', out);
   return out;
 }
 
@@ -19,7 +18,7 @@ const ArticleInner = (props) => (
     <div className="ArticleTitle">
       <div className="ArticleTitle__row ArticleTitle__row-top">
         <div className="ArticleTitle__rowCell ArticleTitle__rowCell-head ArticleTitle__rowCell-directory">
-          {pathToDirectory(props.article.directory)}
+          {categoryName(props.article.directory, props.directories)}
         </div>
         <div className="ArticleTitle__rowCell">
           <h1 className="pageHeader">{props.article.title}</h1>

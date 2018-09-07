@@ -6,7 +6,7 @@ export default  (props) => {
   return (<div className="Article">
     <div className="Article__frame">
       {props.article && (
-        <ArticleInner article={props.article} />
+        <ArticleInner article={props.article} directories={props.directories} />
       )}
       {(!props.article) &&
       <article><h1>Loading ...</h1></article>
