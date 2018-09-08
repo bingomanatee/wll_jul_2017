@@ -2,8 +2,8 @@
 // test
 
 const roots = {
-  test: "http://test-wonderlandlabs.com:8080/api",
-  development: "http://test-wonderlandlabs.com:8080/api",
+  test: "http://test-wonderlandlabs.com:7070/api",
+  development: "http://test-wonderlandlabs.com:7070/api",
   production: "https://wonderland-labs.herokuapp.com/api"
 };
 const environment = process.env.NODE_ENV || 'production';

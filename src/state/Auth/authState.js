@@ -20,6 +20,7 @@ const authState = State('authState', {
   }),
   // Actions
   setUser(state, identity) {
+    console.log('identity: ', identity);
     return updateState(state, {identity, loggedIn: !!identity});
   },
   setUserAuth(state, authLevel) {
@@ -59,28 +60,25 @@ Hook((action) => {
   if (action.type === 'authState_setUser') {
     const user = action.payload;
     if (user) {
-      fetch(`${URI_ROOT}/user/${user.sub}`, {method: 'PUT', body: JSON.stringify(user)})
-        .then((response) => {
-          return response.json();
-        }).then((data) => {
-        authState.setUserAuth(data.auth || 0);
-        const idToken = localStorage.getItem('access_token');
-        return fetch(`${URI_ROOT}/auth`, {
-          method: 'POST',
-          body: JSON.stringify({sid: user.sub, usertoken: idToken})
-        })
+      const access_token = localStorage.getItem('access_token');
+      if (access_token) {
+        authState.setApiToken(access_token);
+      }
+      return fetch(`${URI_ROOT}/auth`, {
+        method: 'POST',
+        body: JSON.stringify({sub: user.sub, access_token}),
+        headers: {sub: user.sub, access_token}
       })
-        .then((response) => {
-          return response.json();
-        })
+        .then((response) => response.json())
         .then((data) => {
-          if (data.token) {
-            authState.setApiToken(data.token);
+          console.log('data:', data);
+          if (data.is_admin) {
+            authState.setUserAuth(100);
           }
-        });
+        })
     }
   }
-})
+});
 
 Effect('login', () => {
   auth.login();
