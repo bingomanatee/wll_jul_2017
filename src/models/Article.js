@@ -20,14 +20,15 @@ const articleModel = {
       .then((result) => result.data);
   },
 
-  create(article, apiToken) {
+  create(article, apiToken, sub) {
     console.log('creating article ', article);
 
     return axios({
       method: 'POST',
       url: `${URI_ROOT}/articles.json`,
       headers: {
-        'Auth-token': apiToken
+        'access_token': apiToken,
+        'sub': sub,
       },
       data: article
     })
@@ -38,12 +39,13 @@ const articleModel = {
       });
 
   },
-  save(article, apiToken) {
+  save(article, apiToken, sub) {
     return axios({
       method: 'PUT',
       url: articleModel.articleUrl(article),
       headers: {
-        'Auth-token': apiToken
+        'access_token': apiToken,
+        'sub': sub,
       },
       data: article
     })

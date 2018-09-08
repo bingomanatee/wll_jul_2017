@@ -70,7 +70,7 @@ export default Component(
 
     changeOnHomepage() {
       if (this.state.article) {
-        this.updateArticle({on_homepage: !this.state.article.on_homepage});
+        this.updateArticle({onHomepage: !this.state.article.onHomepage});
       }
     },
 
@@ -114,7 +114,7 @@ export default Component(
               <div className="pure-control-group">
                <span> <label htmlFor="cb" className="pure-checkbox">
                   <Checkbox checkboxClass={'icheckbox_minimal-grey'}
-                            checked={this.state.article.on_homepage}
+                            checked={this.state.article.onHomepage}
                             onChange={() => this.changeOnHomepage()}/> Show On Homepage
                </label></span>
               </div>

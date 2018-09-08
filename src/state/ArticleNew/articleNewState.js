@@ -36,8 +36,11 @@ Hook((action, getState) => {
 
   if (action.type === 'updateArticleNewArticle') {
     const article = action.payload;
-    const apiToken = getState().authState.apiToken;
-    Article.create(article, apiToken)
+    const authState = getState().authState;
+    const apiToken = authState.apiToken;
+    const identity = authState.identity;
+    console.log('auth state', authState);
+    Article.create(article, apiToken, identity.sub)
       .then(() => {
         Actions.goEditCategory(article.directory);
       })

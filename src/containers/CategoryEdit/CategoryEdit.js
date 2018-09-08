@@ -7,6 +7,17 @@ import articleDate from '../../utils/articleDate';
 
 const rowClass = (article) => article.published ? '' : 'table-row-disabled';
 
+function articleTime(a) {
+  let date = a.fileRevised;
+  if (!date) date = new Date();
+  if (_.isString(date)) date = new Date(date);
+  return date.getTime();
+}
+
+function sortArticles(articles) {
+  return _.sortBy(articles, (a) => -1 * articleTime(a));
+}
+
 export default Component(
   {
     getInitialState(){
@@ -110,9 +121,9 @@ export default Component(
             </tr>
             </thead>
             <tbody>
-            {this.props.category.articles && this.props.category.articles.map((article, i) => (
+            {this.props.category.articles && sortArticles(this.props.category.articles).map((article, i) => (
               <tr key={`article-${article.path}-${i}`}  className={rowClass(article)}>
-                <td>{article.title}</td>
+                <td title={article.path}>{article.title}</td>
                 <td className="table-cell-bin">{article.published ? 'Yes' : 'No'}</td>
                 <td className="table-cell-bin">{article.on_homepage ? 'Yes' : 'No'}</td>
                 <td className="table-cell-date">{articleDate(article)}</td>

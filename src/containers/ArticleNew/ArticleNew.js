@@ -159,7 +159,7 @@ export default Component(
                 </textarea>
               </div>
               <div className="form-buttons">
-                <button className="pure-button pure-button-primary" onClick={(event) => this.update(event)}>Update
+                <button className="pure-button pure-button-primary" onClick={(event) => this.update(event)}>Save
                 </button>
                 <button className="pure-button" onClick={() => this.reset()}>Reset</button>
               </div>

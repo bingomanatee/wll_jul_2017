@@ -38,11 +38,15 @@ Effect('updateArticleEditArticle', (article) => {
 Hook((action, getState) => {
   if (action.type === 'updateArticleEditArticle') {
     const article = action.payload;
+    const authState = getState().authState;
+    const apiToken = authState.apiToken;
+    const identity = authState.identity;
     axios({
       method: 'PUT',
       url: articleUrl(article),
       headers: {
-        'Auth-token': getState().authState.apiToken
+        'access_token': apiToken,
+        'sub': identity.sub,
       },
       data: article
     })
